@@ -3,6 +3,7 @@
  */
 package com.sahan.zaizi.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +24,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "purchase_info")
-public class UserPurchaseInfo {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+public class UserPurchaseInfo implements Serializable{
+	
 	private String address;
 	private String creditCardNumber;
 	@ManyToOne(fetch = FetchType.EAGER)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JoinColumn(name = "id")
 	private User user;
 	private boolean updateFlag;
@@ -40,13 +40,6 @@ public class UserPurchaseInfo {
 	private List<Product> product = new ArrayList<Product>();
 	private Double totalAmount;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getAddress() {
 		return address;
