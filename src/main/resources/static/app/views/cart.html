@@ -1,0 +1,113 @@
+<html>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<div class="cart box_1" style="float: left">
+    <a>
+        <h2>
+            <div class="total">
+                <span class="simpleCart_total">Shopping Cart <img src="../images/shoppingcart.png" alt=""> </span>
+            </div>
+        </h2>
+    </a>
+</div>
+
+<!-- <div class="cart box_1" style="float: right;padding-top: 10px">
+    <a href="/shoppingcart/#/cart">
+    <h4>
+    <div class="total">
+    <span class="simpleCart_total">0 &nbsp; Items</span>
+    <img src="app/images/cart.png" alt=""> |
+    <span class="simpleCart_total">Rs.&nbsp; 0.00</span>
+
+
+    </div>
+    </h4>
+    </a>
+    <p><a href="javascript:;" class="simpleCart_empty" style="color: red">Empty Cart</a></p>
+    <button type="submit"  onclick="Redirect();" class="btn btn-primary" ng-click="clearCart(shoppingCart)">Clear Cart &nbsp; <span
+            class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+</div> -->
+
+<div class="panel-body" ng-app="demoApp" ng-controller="CartCtrl">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Product</th>
+            <th>Amount</th>
+            <th>Quantity</th>
+            <th>Update | Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="x in shoppingCart">
+            <td>{{ x.product.name }}</td>
+            <td>Rs. &nbsp;{{ x.amount | number : 2 }}</td>
+            <td>
+                <input class="form-control" name="stocks" type="number" placeholder="1" min="1" value="{{ x.stock }}"
+                       step="1"
+                       required="required" ng-model="stock" style="width: 75px"/>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary" ng-click="updateCart(x, stock)">Update <span
+                        class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+                <button type="submit" class="btn btn-danger" ng-click="deleteProduct(x)">Delete <span
+                        class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <div style="float: right">
+                    <button type="button" style="width: 180px" class="btn btn-success" data-toggle="modal"
+                            data-target="#exampleModal" data-whatever="@mdo"><span
+                            class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Proceed
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Your Details</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="control-label">Full Name :</label>
+                            <input type="text" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Address :</label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Credit Card Number :</label>
+                            <input type="text" class="form-control" placeholder="xxxx-xxxx-xxxx-xxxx"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button"  onclick="Redirect();" style="width: 180px" class="btn btn-primary" data-dismiss="modal"
+                            data-target=".bs-example-modal-sm" ng-click="purchaseProducts(shoppingCart)"><span
+                            class="glyphicon glyphicon-usd"aria-hidden="true"></span>
+                        Buy Now
+                    </button>
+                    <script src="../scripts/controllers/cart.js">
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

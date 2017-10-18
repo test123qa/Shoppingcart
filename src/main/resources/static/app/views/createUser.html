@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<head>
+  <link rel="stylesheet" href="../css/createUser.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+</head>
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="../scripts/controllers/createUser.js"></script>
+	<div class="form-group col-md-6 col-sm-6">
+	<div ng-app="createUser" ng-controller="createUserCntrl">
+		<form id="create-profile" class="standard-form">
+
+			<div class="row">
+				<div class="small-16 small-centered columns page-error-container">
+
+
+				</div>
+			</div>
+
+			<h1>Create account</h1>
+
+			<div class="row">
+				<div class="col-sm-10">
+					<label for="firstName">First name : </label> <input id="firstName"
+						name="firstName" class="createFormTextFields" title="First Name"
+						data-validate="firstName" type="text" value="" maxlength="20"
+						ng-model="payload.firstName" required />
+				</div>
+			</div><br/>
+
+			<div class="row">
+				<div class="col-sm-10">
+					<label for="lastName">Last name : </label> <input id="lastName"
+						name="lastName" class="createFormTextFields" title="Last Name"
+						data-validate="lastName" type="text" value="" maxlength="30"
+						ng-model="payload.lastName" required />
+				</div>
+			</div><br/>
+
+			<div class="row">
+				<div class="col-sm-10">
+					<label for="email">Email address : </label> <input id="email"
+						name="email" title="Email" type="text" value="" maxlength="75"
+						ng-model="payload.email" required>
+				</div>
+			</div><br/>
+
+			<div class="row">
+				<div class="col-sm-10">
+					<label for="password">Password : </label> <input id="password"
+						name="password" title="Password" type="password" value=""
+						maxlength="16" autocomplete="off" style="padding-right: 96px;"
+						ng-model="payload.pwd" required>
+				</div>
+			</div><br/>
+
+			<div class="row">
+				<div class="col-sm-10">
+					<label for="password">Date of Birth : </label> <input id="dob"
+						name="dob" title="Dob" type="date" value="" maxlength="16"
+						autocomplete="off" style="padding-right: 96px;"
+						ng-model="payload.dob" required>
+				</div>
+			</div><br/>
+
+			<div class="row">
+				<div class="col-sm-10">
+					<button type="submit" id="createProfileBtn" name="createProfile"
+						class="btn btn-default" ng-click="onSubmit()">Create Account</button>
+					<input type="hidden" name="createProfile">
+				</div>
+			</div>
+
+		</form>
+	</div>
+	</div>
+</body>
+</html>

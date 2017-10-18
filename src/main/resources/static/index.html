@@ -1,0 +1,84 @@
+<!DOCTYPE div PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset='utf-8'>
+</head>
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<div class="col-md-7 col-xs-7 logintxt CENTER">
+		<h1>
+			<marquee bgcolor="lightblue">Welcome to Online Shopping</marquee>
+		</h1>
+	</div>
+	<script>
+		
+	</script>
+	<div class="col-md-4 col-xs-4">
+
+		<div class="login card card-container">
+
+			<img src="app/images/home.gif" style="width: 200px; height: 200px;"></img>
+			<h4>Enter User Name and Password to Login &nbsp;&nbsp;! ! !</h4>
+
+
+			<div class="googlebtn" ng-app="login" ng-controller ="loginCntrl">
+
+				<form class="login-form" name="form" >
+					<!-- <div class="form-group">
+						<label for="username">Username : </label> <i class="fa fa-key"></i> <input
+							type="text" name="username" id="username" class="form-control"
+							ng-model="username" required /> <span
+							ng-show="form.username.$dirty && form.username.$error.required"
+							class="help-block">Username is required</span>
+					</div> <br/> -->
+					<input type="text" placeholder="userId" name="username"
+						class="form-control" ng-model="username" required />
+					<input
+						type="password" placeholder="password" name="password"
+						ng-model="password" />
+
+					<!-- <div class="form-group">
+						<label for="password">Password : </label> <i class="fa fa-lock"></i>
+						<input type="password" name="password" id="password"
+							class="form-control" ng-model="password" required /> <span
+							ng-show="form.password.$dirty && form.password.$error.required"
+							class="help-block">Password is required</span>
+					</div> <br/> -->
+
+					<input type="button" ng-click="login(username,password)" value="Login"/>
+					<!-- <div class="form-actions">
+						<button type="submit" ng-disabled="form.$invalid || dataLoading"
+							class="btn btn-danger">Login</button>
+							<input type="button" ng-click="login(usr)" value="Login" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger"/>
+					</div> -->
+					<p class="message">
+						Not registered? <a href="/shoppingcart/app/views/createUser.html">Create an account</a>
+					</p>
+				</form>
+			</div>
+
+		</div>
+	</div>
+	<script src="app/scripts/controllers/login.js">
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
