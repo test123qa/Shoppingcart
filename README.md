@@ -1,5 +1,5 @@
 ## *Overview*
-Create Sample Shopping Cart Application for home work assignment to the Zaizi Asia.
+Create Sample Shopping Cart Application .
 
 ## *Prerequisites*
 * Java 1.8
