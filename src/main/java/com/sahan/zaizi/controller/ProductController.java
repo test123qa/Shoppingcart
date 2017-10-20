@@ -102,5 +102,26 @@ public class ProductController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/getProductBy/{category}/{subCategory}")
+	public ResponseEntity<?> getProductByCategory(@PathVariable("category") String category, @PathVariable("subCategory") String subCategory) {
+		logger.debug("BEGIN:method getProductByCategory() in the " + getClass().getName());
+		List<Product> products = null;
+		try {
+
+			products = productService.getProductByCategory(category, subCategory);
+
+			if (products != null && products.size() != 0) {
+				return new ResponseEntity<>(products, HttpStatus.OK);
+
+			} else {
+				return new ResponseEntity<>("no product's found with your search", HttpStatus.NO_CONTENT);
+			}
+		} catch (ShoppingCartException sce) {
+			logger.error("ERROR  " + sce.getMessage());
+			return new ResponseEntity<>(sce.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+
+	}
 
 }
