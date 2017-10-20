@@ -54,3 +54,8 @@ CREATE TABLE `shoppingCart`.`user` (
   `pwd` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1
+
+
+
+ALTER TABLE `shoppingCart`.`product` 
+ADD COLUMN `subCategory` VARCHAR(45) NOT NULL AFTER `product_id`
