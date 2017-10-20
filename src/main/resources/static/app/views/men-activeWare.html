@@ -32,30 +32,24 @@
             <!-- <th>#</th> !-->
             <th>Product</th>
             <th>Product Name</th>
-            <th>Description</th>
-            <th>Quantity</th>
-             <th>Unit Price</th>
             <!--  th>Price</th> -->
-            <th>Add to Cart</th>
+            <th>Description</th>
         </tr>
         </thead>
         <tbody>
 
         <tr ng-repeat="pro in productsByCat | filter: searchKeyword ">
-            <td>{{ pro.id }}</td>
-            <td>{{ pro.name }}</td>
-            <td>{{ pro.description }}</td>
-            <td>{{ pro.quantity }}</td>
-            <td>Rs. &nbsp;{{ pro.unitPrice | number : 2 }}</td>
+            <td>{{ pro[0] }}</td>
+            <td>{{ pro[1] }}</td>
             
             <!-- <td><input class="form-control" name="stocks" type="number" placeholder="0" min="1" value="1" step="1"
                        required="required" ng-model="stock" style="width: 75px"/>
             </td> -->
-           <!--  <td>
-                <button type="submit" class="btn btn-primary" ng-click="addToCart(pro,stock)">Add to Cart &nbsp; <span
+            <td>
+                <button type="submit" class="btn btn-primary" ng-click="addToCart(pro,stock)">Click for Description &nbsp; <span
                         class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
                 </a> 
-            </td> -->
+            </td>
 
         </tr>
 
