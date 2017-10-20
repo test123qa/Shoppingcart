@@ -8,7 +8,7 @@ app.controller("menActiveWareCntrl", function($scope, $http) {
 
 	$http({
 		method : "GET",
-		url : "http://localhost:9100/shoppingcart/products/MEN/MEN_ACTIVE_WARE"
+		url : "http://localhost:9100/shoppingcart/products/getProductBy/MEN/MEN_ACTIVE_WARE"
 
 	}).then(function mySuccess(response) {
 		alert(JSON.stringify(response.data));
