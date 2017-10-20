@@ -19,7 +19,8 @@ public class Product implements Serializable {
 
     @Column(name = "name")
     private String name;
-
+   //private char gender;
+   
     @Column(name = "description")
     private String description;
 
@@ -31,24 +32,27 @@ public class Product implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private Set<ShoppingCart> shoppingCarts = new HashSet<>();
-    
-    @Column(name="category")
-    private String category;
-    
-    @Column(name="subCategory")
-    private String subCategory;
+   @Column(name="category",length=1,nullable=false)
+    private char category;
 
-    public Product(){
+    public char getCategory() {
+		return category;
+	}
+
+	public void setCategory(char category) {
+		this.category = category;
+	}
+
+	public Product(){
 
     }
 
-    public Product(Double unitPrice, Integer quantity, String description, String name, String category, String subCategory) {
+    public Product(Double unitPrice, Integer quantity, String description, String name,char catatory) {
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.description = description;
         this.name = name;
-        this.category = category;
-        this.subCategory = subCategory;
+        this.category=catatory;
     }
 
     public Long getId() {
@@ -90,21 +94,4 @@ public class Product implements Serializable {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
-	}
-    
 }
