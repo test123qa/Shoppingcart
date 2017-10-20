@@ -22,6 +22,8 @@ app.controller("createUserCntrl", function($scope, $http) {
 			data : $scope.payload
 		}).then(function(response) {
 			console.log(response);
+			alert("Account Created Successfully !!!!")
+			alert("Click on the image to go to Home ...")
 		}, function(response) {
 			console.log(response);
 

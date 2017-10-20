@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<marquee> <span style="color: blue">Welcome to Online Shopping !!!!</span></marquee>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<div ng-app = "menActiveWare" ng-controller = "menActiveWareCntrl">
+	<div class="col-md-7 col-xs-7 logintxt CENTER">
+		<h1>
+			<marquee bgcolor="lightblue">Welcome to Stop & Shop
+				Shopping</marquee>
+		</h1>
+	</div>
 
+	<div class="container">
 
-
-<div ng-app="myShoppingList" ng-controller="myCtrl">
-  <ul>
-   <!--   <li ng-repeat="product in products">{{product}}</li> -->
+		<a href="/shoppingcart"> <img src="../images/stopandshop.jpg"
+			style="width: 200px; height: 100px;" class="img-rounded"
+			alt="Cinque Terre"></img>
+		</a>
+	</div>
+	<br />
+	
+	<ul>
     <h2 class='color=blue'>Product Details...</h2>
     <input class="form-control" ng-model="searchKeyword" placeholder="Search"/>
     <table class="table table-hover">
@@ -26,21 +41,21 @@
         </thead>
         <tbody>
 
-        <tr ng-repeat="pro in products | filter: searchKeyword ">
+        <tr ng-repeat="pro in productsByCat | filter: searchKeyword ">
             <td>{{ pro.id }}</td>
             <td>{{ pro.name }}</td>
             <td>{{ pro.description }}</td>
             <td>{{ pro.quantity }}</td>
             <td>Rs. &nbsp;{{ pro.unitPrice | number : 2 }}</td>
             
-            <td><input class="form-control" name="stocks" type="number" placeholder="0" min="1" value="1" step="1"
+            <!-- <td><input class="form-control" name="stocks" type="number" placeholder="0" min="1" value="1" step="1"
                        required="required" ng-model="stock" style="width: 75px"/>
-            </td>
-            <td>
+            </td> -->
+           <!--  <td>
                 <button type="submit" class="btn btn-primary" ng-click="addToCart(pro,stock)">Add to Cart &nbsp; <span
                         class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
-               <!--  </a>  -->
-            </td>
+                </a> 
+            </td> -->
 
         </tr>
 
@@ -48,8 +63,16 @@
     </table>
     
   </ul>
+
 </div>
-<script src="../scripts/controllers/main.js"></script>
+
+
+
+	<script src="../scripts/controllers/men-activeWare.js">
+		
+	</script>
+
+
 
 </body>
 </html>
