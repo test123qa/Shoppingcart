@@ -60,8 +60,16 @@ proApp.controller('proCtrl', function($scope, $http, $window) {
     
     $scope.addToBag= function(){
   	//alert(iniProData.userName)
-  	alert(iniProData.productId)
-  	alert(document.getElementById("proQut").value)
+  	alert(iniProData.productId);
+  	var productId = iniProData.productId;
+  	alert(document.getElementById("proQut").value);
+  	var productCount = document.getElementById("proQut").value;
+  	
+  	var host = $window.location.host;
+	    	      var landingUrl = "http://" + host + "/shoppingcart/app/views/userBag.html";
+	    	      landingUrl = landingUrl+"?productId="+productId+";productCount="+productCount;
+	    	      console.log(landingUrl)
+	  	        $window.location.href = landingUrl;
   	
   	var product = new Object();
 	  product.productId = iniProData.productId;
