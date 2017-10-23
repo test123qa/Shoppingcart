@@ -17,7 +17,7 @@ app.controller("createUserCntrl", function($scope, $http) {
 
 	$scope.onSubmit = function() {
 		$http({
-			url : 'http://localhost:9100/shoppingcart/profile',
+			url : 'http://localhost:8080/shoppingcart/profile',
 			method : "POST",
 			data : $scope.payload
 		}).then(function(response) {

@@ -13,7 +13,7 @@ var app = angular.module('myShoppingList', []);
 app.controller('myCtrl', function($scope, $http) {
   $http({
     method : "GET",
-    url : "http://localhost:9100/shoppingcart/products"
+    url : "http://localhost:8080/shoppingcart/products"
   }).then(function mySuccess(response) {
       console.log(JSON.stringify(response.data));
       $scope.products = response.data;
@@ -41,7 +41,7 @@ app.controller('myCtrl', function($scope, $http) {
 	        $window.location.href = landingUrl;*/
 	        
 	        $http({
-	  		  url : 'http://localhost:9100/shoppingcart/shoppingCart/addProdcut',
+	  		  url : 'http://localhost:8080/shoppingcart/shoppingCart/addProdcut',
 	  		  method : "POST",
 	  		  data : $scope.itemDetails
 	  		  }).then(function(response) {

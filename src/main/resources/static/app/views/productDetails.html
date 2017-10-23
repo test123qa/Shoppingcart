@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Macy's Product Details</title>
+</head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="../scripts/controllers/productDetails.js"></script>
+<style>
+.productTitle {
+	position: absolute !important;
+	width: 500px !important;
+	right: 300px !important;
+	display: inline-block !important;
+}
+
+.priceSale {
+	color: #c00 !important;
+	/* text-align: center; */
+}
+
+.productQuantity {
+	width: 50px !important;
+	height: 30px !important;
+}
+.addToBagClass {
+    height: 30px !important;
+    border: 2px solid #cc0000 !important;
+    border-radius: 8px !important;
+    background-color: #cc0000 !important;
+    color: #FFFFFF !important;
+    width: 120px !important;
+}
+.imgDiv {
+display: inline-block !important;
+padding-left: 196px !important;
+}
+#productName {
+color:blue;
+}
+.scrollTitle {
+height:40px !important;
+}
+.innerTitle {
+ height:100px !important;
+}
+</style>
+<body ng-app='procApp'>
+<marquee bgcolor="lightblue" class='scrollTitle'><b><span id='innerTitle'>Welcome to Stop &amp; Shop
+				Shopping</span></b></marquee>
+				
+				<br><br>
+				
+				<div class="container">
+
+		<a href="/shoppingcart"> <img src="../images/stopandshop.jpg" style="width: 200px; height: 100px;" class="img-rounded" alt="Cinque Terre">
+		</a>
+		<br>
+		<br>
+	</div>
+	<div ng-controller='proCtrl'>
+	    <div id='imgDiv' class='imgDiv'>
+	    <img class="mainImage" id='men' src="https://slimages.macysassets.com/is/image/MCY/products/0/optimized/3450890_fpx.tif?op_sharpen=1&amp;wid=400&amp;hei=489&amp;fit=fit,1&amp;$filterlrg$" alt="Perry Ellis Portfolio Slim-Fit Solid Navy Tuxedo" height="489px" width="400px" style="left: 0px; top: 0px;">
+	    	  <img class="mainImage" id='women' src="https://slimages.macysassets.com/is/image/MCY/products/9/optimized/3836939_fpx.tif?op_sharpen=1&wid=400&hei=489&fit=fit,1&$filterlrg$" alt="Perry Ellis Portfolio Slim-Fit Solid Navy Tuxedo" height="489px" width="400px" style="left: 0px; top: 0px;"> 
+	    <img class="mainImage" id='kids' src="https://slimages.macysassets.com/is/image/MCY/products/2/optimized/8659622_fpx.tif?op_sharpen=1&wid=400&hei=489&fit=fit,1&$filterlrg$" alt="Perry Ellis Portfolio Slim-Fit Solid Navy Tuxedo" height="489px" width="400px" style="left: 0px; top: 0px;"> 
+	    </div>
+		<div class="productTitle">
+			<h3 class="color:black">Stop & Shop product</h3>
+			<a href="https://www.macys.com/" id='productName'>{{productName}}</a>
+			<!-- <span id='productName' class='color:blue'>{{productName}}</span> --></br>
+			<span>{{mainDesc}}</span><br>
+			 <span class="redStar"
+				style="width: 100.0%"> <img src="../images/Red_star.png"
+				alt="rateing" /> <img src="../images/Red_star.png" alt="rateing" />
+				<img src="../images/Red_star.png" alt="rateing" /> <img
+				src="../images/Red_star.png" alt="rateing" /> <img
+				src="../images/Red_star.png" alt="rateing" />
+			</span>
+			<div class='tieredPrices'>
+				<b><span class="priceSale" class='color:#cc0000' id='priceSale'> {{priceSale | currency:'Rs ':2}}
+				</span></b><br>
+				<div class='quantity'>
+					<table>
+						<tr>
+							<th><span>Qty</span> <select class='productQuantity' id='proQut'>
+									<option  selected value="1">1</option>
+									<option  value="2" >2</option>
+									<option  value="3" >3</option>
+									<option  value="4" >4</option>
+									<option  value="5" >5</option>
+									<option  value="6" >6</option>
+							</select></th>
+							<th>
+								<div class="">
+									<button class="addToBagClass" data-action="addToBag" data-id="4799187"
+										data-auto="addToBag" ng-click='addToBag()'>
+										<span class="supress-if-out-of-stock">Add to Bag</span>
+									</button>
+								</div>
+							</th>
+						</tr>
+					</table>
+				</div>
+				<!--  <div class="columns small-6 cta-col button-col end"> 
+					<button class="ctaButton expand small addToBagButton"
+						data-action="addToBag" data-id="4799187" data-auto="addToBag">
+						<span class="supress-if-out-of-stock">Add to Bag</span>
+					</button>
+				</div>  -->
+			</div>
+			<span id='line'>---------------------------------------------------</span>
+			<div id='procDetailsDiv' class=''>
+				<b><span id='procDetail' class=''>Product Details</span></b>
+				<p id='mainDesc'>{{mainDesc}}</p>
+				<p id='desc1' class='desc1'>Add a luxe touch to your evening wear. This tuxedo from Perry Ellis defines elegance, with a slim-fit in classic navy.</p>
+			    <ul id='bullets' class='bullets'>
+			     <li>Slim fit: cut with a narrower point-to-point measurement; higher armholes and trimmer through the chest and waist; slim trousers with a tapered leg</li>
+			     <li>Suit includes: shawl collar jacket and flat-front, partially lined pants with unfinished hem</li>
+			     <li>Height recommendation: Short (S) = 5’7” and under; Regular (R) = 5’8”-5’11”; Long (L) = 6’ and over</li>
+			     <li>This suit has a 6” drop which is the difference between the size of jacket & pants. For example: a 40R jacket includes a 34W pant.</li>
+			     <li>Click on our size chart above for more sizes and details</li>
+			     <li>Viscose/polyester</li>
+			     <li>Dry clean</li>
+			     <li>Imported</li>
+			     <li id='webId'>{{webId}}</li>
+			    </ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
