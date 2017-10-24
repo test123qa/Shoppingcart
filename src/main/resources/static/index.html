@@ -1,6 +1,8 @@
 <!DOCTYPE div PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="app/scripts/controllers/index.js"></script> 
 <meta charset='utf-8'>
 <style>
 .dropbtn {
@@ -68,7 +70,7 @@
 }
 </style>
 </head>
-<body>
+<body ng-app="indexApp">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
@@ -80,7 +82,7 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
 		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 		crossorigin="anonymous"></script>
-	<div class="col-md-4 col-xs-4">
+	<div class="col-md-4 col-xs-4" ng-controller="indexMainCtrl">
 
 		<div class="login card card-container">
 

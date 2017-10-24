@@ -3,7 +3,12 @@
  */
 package com.sahan.zaizi.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,9 +30,19 @@ public class UserProfileController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/profile", consumes = "application/json", produces = "application/json")
 	public void addUser(@RequestBody User user) {
-
 		userRepository.save(user);
-
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/{ip}/generateUserId")
+	public void generateUserId(HttpServletRequest request, HttpServletResponse response, @PathVariable("ip") String ip) {
+		System.out.println("In generateUserId()....To generate userId and write cookies for IP..."+ip);
+		String userId = ip.replace(".", "*");
+		//request.getco
+		System.out.println(ip+"---ip---userid----"+userId);
+		Cookie ck=new Cookie("shoppingCart","guest,"+userId);
+		ck.setPath("/");
+		response.addCookie(ck);
+		System.out.println("cookies has been written....");
 	}
 
 }
