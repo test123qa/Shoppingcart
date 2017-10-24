@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
-
+<title>Product check out page</title>
+<link rel="stylesheet" href="../css/index.css">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="../scripts/controllers/userBag.js"></script> 
 <style type="text/css">
@@ -200,18 +200,38 @@ div.ftButtons a {
     padding-left: 0;
     width: 100%;
 }
+.dropbtn {
+	background-color: #4CAF50;
+	color: white;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	margin-left: 150px;
+}
 
+.img {
+	margin-left: 130px;
+	/* margin-top: 80px; */
+}
+
+.img-search {
+	margin-left: 1200px;
+	margin-top: -80px;
+	
+}
 </style>
 </head>
 <body ng-app="userBagApp">
 
 <div id="bagSummaryView" class="bagSummaryViewCSS"  ng-controller="userBagCtrl">
+
 	<div id="bagHeading" class="bagHeadingCSS">
 		<div id="bagHeadingMsg" class="bagHeadingMsgCSS">
 			{{ bagPayload.productCount }} item added to your bag
 		</div>
 	</div>
 	<img class="dividerCSS" src="https://assets.macysassets.com/bagapp/web20/assets/img/bag/atb_page_divider.png" title="divider shadow" alt="divider shadow">
+	
 
 	<div id="productSummaryView" class="productSummaryViewCSS">
 		

@@ -2,17 +2,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="../css/index.css">
+<style type="text/css">
+.dropbtn {
+	background-color: #4CAF50;
+	color: white;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	margin-left: 150px;
+}
+
+.img {
+	margin-left: 130px;
+	/* margin-top: 80px; */
+}
+
+.img-search {
+	margin-left: 1200px;
+	margin-top: -80px;
+	
+}
+</style>
+<title>Men Active Ware</title>
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <div ng-app = "menActiveWare" ng-controller = "menActiveWareCntrl">
-	<div class="col-md-7 col-xs-7 logintxt CENTER">
-		<h1>
-			<marquee bgcolor="lightblue">Welcome to Stop & Shop
-				Shopping</marquee>
-		</h1>
-	</div>
 
 	<div class="container">
 
@@ -21,7 +37,41 @@
 			alt="Cinque Terre"></img>
 		</a>
 	</div>
-	<br />
+	
+	<div>
+			<div class="dropdown">
+				<button class="dropbtn" style="margin-left: 250px">Women</button>
+				<div class="dropdown-content" style="margin-left: 250px">
+					<a href="#">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
+						href="">Coats</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn" style="margin-left: 250px">Men</button>
+				<div class="dropdown-content" style="margin-left: 250px">
+					<a href="/shoppingcart/app/views/men-activeWare.html">Active
+						Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a href="">Coats</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn" style="margin-left: 150px">Kids</button>
+				<div class="dropdown-content" style="margin-left: 150px">
+					<a href="#">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
+						href="">Coats</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn" style="margin-left: 200px">Home
+					Appliances</button>
+				<div class="dropdown-content" style="margin-left: 200px">
+					<a href="#">Kitchen</a> <a href="#">Furniture</a> <a href="#">Electronics</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="img">
+			<img src="../images/Men-activeware-1.jpg">
+		</div>
 	
 	<ul>
     <h2 class='color=blue'>Product Details...</h2>

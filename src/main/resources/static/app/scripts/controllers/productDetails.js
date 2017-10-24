@@ -15,7 +15,6 @@ proApp.controller('proCtrl', function($scope, $http, $window) {
         var loc = (document.location).toString();
         var qryPar = loc.split("?")[1];
         var eachPar = qryPar.split(";");
-        alert(eachPar)
         var product = new Object();
 	  product.productId = eachPar[0].split("=")[1];
 	  product.stock = eachPar[1].split("=")[1];
@@ -25,7 +24,7 @@ proApp.controller('proCtrl', function($scope, $http, $window) {
 //	  alert("module "+module+" sub-module "+subModule)
         $http({
             method : "POST",
-            url : "http://localhost:8080/shoppingcart/shoppingCart/productDetails",
+            url : "http://localhost:9100/shoppingcart/shoppingCart/productDetails",
             data: product,
             headers: {
     	        'Content-Type': 'application/json',
@@ -59,8 +58,6 @@ proApp.controller('proCtrl', function($scope, $http, $window) {
     });
     
     $scope.addToBag= function(){
-  	//alert(iniProData.userName)
-  	alert(iniProData.productId);
   	var productId = iniProData.productId;
   	alert(document.getElementById("proQut").value);
   	var productCount = document.getElementById("proQut").value;
@@ -79,7 +76,7 @@ proApp.controller('proCtrl', function($scope, $http, $window) {
 	  $http({
           method: "POST",
 //          url: "http://localhost:8080/shoppingcart/shoppingCart/AddToCart",
-          url: "http://localhost:8080/shoppingcart/shoppingCart/addProdcut",
+          url: "http://localhost:9100/shoppingcart/shoppingCart/addProdcut",
           // dataType: 'json',
           // data: { "productId": pro.id,"stock":stocks,"status": status},
           data: product,
