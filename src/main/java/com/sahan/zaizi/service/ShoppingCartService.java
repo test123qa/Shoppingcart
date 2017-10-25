@@ -117,7 +117,6 @@ public class ShoppingCartService {
     	Object[] bagData = bagDataList.get(0);
     	
     	String str = "{\"productDesc\" : \""+bagData[0]+"\", \"productAmount\" : \""+bagData[1]+"\", \"productCount\" : \""+bagData[2]+"\", \"totalProductCount\" : \""+bagData[3]+"\", \"totalAmount\" : \""+bagData[4]+"\"}";
-       System.out.println("JSON response string..."+str);
     	return str;
     }
     

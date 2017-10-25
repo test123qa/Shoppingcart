@@ -51,7 +51,6 @@ public class ShoppingCartController {
     
     @RequestMapping(method = RequestMethod.GET, value = "/showMyBag/{productId}/{userId}")
     public String showMyBag(@PathVariable("productId") Long productId, @PathVariable("userId") Long userId) {
-    	System.out.println(productId+"...In showMyBag().... "+userId);
     	return shoppingCartService.showMyBag(productId, userId);
     }
 }
