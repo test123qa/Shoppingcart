@@ -37,5 +37,18 @@ proApp.controller('userBagCtrl', function($scope, $http, $window) {
         
     });
     
+    fnKeepShopping=function(){
+    	//bagSummaryView
+    }
+    
+    fnViewBagCheckOut=function(){
+   
+    	var host = $window.location.host;
+	      var landingUrl = "http://" + host + "/shoppingcart/app/views/checkOutBag2.html";
+	      landingUrl = landingUrl+"?productId="+productId+";userId="+userId;
+	      console.log(landingUrl)
+        $window.location.href = landingUrl;
+    }
+    
 });
 

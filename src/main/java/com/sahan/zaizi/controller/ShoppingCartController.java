@@ -2,6 +2,7 @@ package com.sahan.zaizi.controller;
 
 import com.sahan.zaizi.domain.ShoppingCart;
 import com.sahan.zaizi.dto.ShoppingCartDTO;
+import com.sahan.zaizi.pojo.ProductDetails;
 import com.sahan.zaizi.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,5 +53,12 @@ public class ShoppingCartController {
     @RequestMapping(method = RequestMethod.GET, value = "/showMyBag/{productId}/{userId}")
     public String showMyBag(@PathVariable("productId") Long productId, @PathVariable("userId") Long userId) {
     	return shoppingCartService.showMyBag(productId, userId);
+    }
+    
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/checkOutBagDetailsController/{productId}/{userId}")
+    public List<ProductDetails> checkOutBagDetailsController(@PathVariable("userId") Long productId, @PathVariable("productId") Long userId) {
+    	System.out.println(productId+"...In checkOutBagDetails().... "+userId+" productId... "+productId);
+    	return shoppingCartService.checkOutBagDetailsService(userId);
     }
 }

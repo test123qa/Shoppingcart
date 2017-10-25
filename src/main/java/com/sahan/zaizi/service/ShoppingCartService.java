@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.sahan.zaizi.service.ProductService;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -119,6 +121,33 @@ public class ShoppingCartService {
     	String str = "{\"productDesc\" : \""+bagData[0]+"\", \"productAmount\" : \""+bagData[1]+"\", \"productCount\" : \""+bagData[2]+"\", \"totalProductCount\" : \""+bagData[3]+"\", \"totalAmount\" : \""+bagData[4]+"\"}";
     	return str;
     }
+    
+    public List<ProductDetails> checkOutBagDetailsService(Long UserId) {
+    	System.out.println("user id in service "+UserId);
+    	List<ProductDetails> proHistory = new ArrayList<ProductDetails>();
+    	List<Object[]> cartListObj = shoppingCartRepository.getCartDetails(UserId);
+    	System.out.println("cart "+cartListObj.size());
+    	for(int i=0; i<cartListObj.size();i++) {
+    		Object[] eCartObj = cartListObj.get(i);
+    		System.out.println("big "+eCartObj[0]);
+    		BigInteger proId = (BigInteger)eCartObj[0];
+    		List<Object[]> proListObj = shoppingCartRepository.getProductDetails(proId);
+    		Object[] proDet = proListObj.get(0);
+    		
+    		ProductDetails  pdObj = new ProductDetails();
+    		pdObj.setProId((BigInteger)proDet[0]);
+    		pdObj.setProductName((String)proDet[1]);
+    		pdObj.setProcDesc((String)proDet[2]);
+    		pdObj.setUnitPrice(((Double)proDet[3]));
+    		pdObj.setAmmount(((Double)eCartObj[1]));
+    		pdObj.setStockDec((BigDecimal)eCartObj[2]);
+    		String productDetails = "{\"proId\":\""+proDet[0]+"\",\"name\":\""+proDet[1]+"\",\"desc\":\""+proDet[2]+"\",\"unit_price\":\""+proDet[3]+"\",\"amount\":\""+eCartObj[1]+"\",\"stock\":\""+eCartObj[2]+"\"}";
+    		System.out.println(pdObj);
+    		proHistory.add(pdObj);
+    	}
+    	return proHistory;
+    }
+    
     
 }
 

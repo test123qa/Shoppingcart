@@ -1,5 +1,8 @@
 package com.sahan.zaizi.pojo;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 public class ProductDetails {
    private long productId;
    private String userName;
@@ -9,6 +12,8 @@ public class ProductDetails {
    private int quantity;
    private int stock;
    private double ammount;
+   private BigInteger proId;
+   private BigDecimal stockDec;
 public long getProductId() {
 	return productId;
 }
@@ -56,5 +61,17 @@ public double getAmmount() {
 }
 public void setAmmount(double ammount) {
 	this.ammount = ammount;
+}
+public BigInteger getProId() {
+	return proId;
+}
+public void setProId(BigInteger proId) {
+	this.proId = proId;
+}
+public BigDecimal getStockDec() {
+	return stockDec;
+}
+public void setStockDec(BigDecimal stockDec) {
+	this.stockDec = stockDec;
 }
 }
