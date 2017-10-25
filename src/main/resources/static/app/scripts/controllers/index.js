@@ -6,6 +6,7 @@ var proApp = angular.module('indexApp', []);
 
 proApp.controller('indexMainCtrl', function($scope, $http, $window) {
     angular.element(document).ready(function () {
+    	var host = $window.location.host;
     	$http({
             method : "GET",
             url : "https://api.ipify.org",
@@ -18,7 +19,7 @@ proApp.controller('indexMainCtrl', function($scope, $http, $window) {
         	  var ip = response.data;
         	  $http({
                   method : "GET",
-                  url : "http://localhost:8080/shoppingcart/"+ip+"/generateUserId",
+                  url : "http://" + host + "/shoppingcart/"+ip+"/generateUserId",
                   headers: {
           	        'Content-Type': 'application/json',
           	        'Accept': 'application/json' 

@@ -3,7 +3,7 @@
  */
 
 var app = angular.module("createUser", []);
-app.controller("createUserCntrl", function($scope, $http) {
+app.controller("createUserCntrl", function($scope, $http, $window) {
 
 	$scope.payload = {
 		firstName : "",
@@ -16,8 +16,9 @@ app.controller("createUserCntrl", function($scope, $http) {
 	}
 
 	$scope.onSubmit = function() {
+		var host = $window.location.host;
 		$http({
-			url : 'http://localhost:8080/shoppingcart/profile',
+			url : "http://" + host + "/shoppingcart/profile",
 			method : "POST",
 			data : $scope.payload
 		}).then(function(response) {

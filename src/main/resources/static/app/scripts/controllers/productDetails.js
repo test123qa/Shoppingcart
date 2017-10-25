@@ -5,6 +5,7 @@
 var proApp = angular.module('procApp', []);
 
 proApp.controller('proCtrl', function($scope, $http, $window) {
+	var host = $window.location.host;
 	document.getElementById('men').style.display = 'none';
 	document.getElementById('women').style.display = 'none';
 	document.getElementById('kids').style.display = 'none';
@@ -21,18 +22,15 @@ proApp.controller('proCtrl', function($scope, $http, $window) {
 	  product.status = eachPar[2].split("=")[1];
 	  module = eachPar[3].split("=")[1];
 	  subModule = eachPar[4].split("=")[1];
-//	  alert("module "+module+" sub-module "+subModule)
         $http({
             method : "POST",
-            url : "http://localhost:9100/shoppingcart/shoppingCart/productDetails",
+            url : "http://" + host +"/shoppingcart/shoppingCart/productDetails",
             data: product,
             headers: {
     	        'Content-Type': 'application/json',
     	        'Accept': 'application/json' 
     	        }
           }).then(function mySuccess(response) {
-              // $scope.myWelcome = response.data;
-        	  // alert(JSON.stringify(response));
               console.log(JSON.stringify(response.data));
               var proData = JSON.stringify(response.data);
               for(var i=0; i<response.data.length; i++) {
@@ -59,10 +57,8 @@ proApp.controller('proCtrl', function($scope, $http, $window) {
     
     $scope.addToBag= function(){
   	var productId = iniProData.productId;
-  	alert(document.getElementById("proQut").value);
   	var productCount = document.getElementById("proQut").value;
   	
-  	var host = $window.location.host;
 	    	      var landingUrl = "http://" + host + "/shoppingcart/app/views/userBag.html";
 	    	      landingUrl = landingUrl+"?productId="+productId+";productCount="+productCount;
 	    	      console.log(landingUrl)
@@ -72,36 +68,18 @@ proApp.controller('proCtrl', function($scope, $http, $window) {
 	  product.productId = iniProData.productId;
 	  product.stock = document.getElementById("proQut").value;
 	  product.status = 'PURCHASED';
-	  
 	  $http({
           method: "POST",
-//          url: "http://localhost:8080/shoppingcart/shoppingCart/AddToCart",
-          url: "http://localhost:9100/shoppingcart/shoppingCart/addProdcut",
-          // dataType: 'json',
-          // data: { "productId": pro.id,"stock":stocks,"status": status},
+          url: "http://" + host + "/shoppingcart/shoppingCart/addProdcut",
           data: product,
-          // headers: { "Content-Type": "application/json" }
 	  headers: {
 	        'Content-Type': 'application/json',
 	        'Accept': 'application/json' 
 	    }
       }).then(function mySuc(response){
     	      console.log(JSON.stringify(response.data));
-    	      // $stateParams.proDetails = product;
-//    	      var host = $window.location.host;
-//    	      var landingUrl = "http://" + host + "/shoppingcart/app/views/productDetails.html";
-//    	      landingUrl = landingUrl+"?proId="+pro.id+";stock="+stocks+";status="+status;
-//    	      console.log(landingUrl)
-//  	        $window.location.href = landingUrl;
-//    	    	    $stateProvider
-//    	    	    .state('home', {
-//    	    	        url: '/home',
-//    	    	        templateUrl: 'partial-home.html'
-//    	    	    })
-    	   // 	});
   	        
       }, function myErr(response){
-    	  // console.log(JSON.stringify(response.statusText));
       });
 	  
     }

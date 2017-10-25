@@ -6,9 +6,10 @@ var app = angular.module("menActiveWare", []);
 
 app.controller("menActiveWareCntrl", function($scope, $http, $window) {
 
+	var hostName = $window.location.host;
 	$http({
 		method : "GET",
-		url : "http://localhost:9100/shoppingcart/products/getProductBy/MEN/MEN_ACTIVE_WARE"
+		url : "http://" + hostName + "/shoppingcart/products/getProductBy/MEN/MEN_ACTIVE_WARE",
 
 	}).then(function mySuccess(response) {
 		console.log(JSON.stringify(response.data));
@@ -18,7 +19,6 @@ app.controller("menActiveWareCntrl", function($scope, $http, $window) {
 	});
 	
 	$scope.addToCart=function(proId){
-		alert(proId)
 		var stocks = 1; //dummy value
 		var status = 'PURCHASED'; //dummy value
 		var module = 'MEN';

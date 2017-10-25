@@ -19,10 +19,11 @@ proApp.controller('userBagCtrl', function($scope, $http, $window) {
 	  var productId = eachPar[0].split("=")[1];
 	  //var productCount = eachPar[1].split("=")[1];
 	  var userId = 1;
+	  var host = $window.location.host;
 	  console.log(productId+"-----"+userId)
         $http({
             method : "GET",
-            url : "http://localhost:8080/shoppingcart/shoppingCart/showMyBag/"+productId+"/"+userId,
+            url : "http://" + host + "/shoppingcart/shoppingCart/showMyBag/"+productId+"/"+userId,
             headers: {
     	        'Content-Type': 'application/json',
     	        'Accept': 'application/json' 
