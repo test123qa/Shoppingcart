@@ -68,8 +68,8 @@ public class ShoppingCartService {
         return shoppingCartRepository.save(updateItem);
     }
 
-    public void deleteProduct(Long id) {
-        shoppingCartRepository.delete(id);
+    public void deleteProduct(Long product_id) {
+        shoppingCartRepository.delete(product_id);
     }
 
     public void clearShoppingCart(Object object) {
@@ -78,13 +78,13 @@ public class ShoppingCartService {
 
 
     public List<ShoppingCart> findByPurchased() {
-        return shoppingCartRepository.findByStatus("PURCHASED");
+        return shoppingCartRepository.findByStatus("ACTIVE");
     }
 
 
     public void purchaseProducts(Long id) {
         ShoppingCart shoppingCart = shoppingCartRepository.findOne(id);
-        shoppingCart.setStatus("PURCHASED");
+        shoppingCart.setStatus("ACTIVE");
         shoppingCartRepository.save(shoppingCart);
     }
     
@@ -123,13 +123,10 @@ public class ShoppingCartService {
     }
     
     public List<ProductDetails> checkOutBagDetailsService(Long UserId) {
-    	System.out.println("user id in service "+UserId);
     	List<ProductDetails> proHistory = new ArrayList<ProductDetails>();
     	List<Object[]> cartListObj = shoppingCartRepository.getCartDetails(UserId);
-    	System.out.println("cart "+cartListObj.size());
     	for(int i=0; i<cartListObj.size();i++) {
     		Object[] eCartObj = cartListObj.get(i);
-    		System.out.println("big "+eCartObj[0]);
     		BigInteger proId = (BigInteger)eCartObj[0];
     		List<Object[]> proListObj = shoppingCartRepository.getProductDetails(proId);
     		Object[] proDet = proListObj.get(0);
@@ -142,12 +139,13 @@ public class ShoppingCartService {
     		pdObj.setAmmount(((Double)eCartObj[1]));
     		pdObj.setStockDec((BigDecimal)eCartObj[2]);
     		String productDetails = "{\"proId\":\""+proDet[0]+"\",\"name\":\""+proDet[1]+"\",\"desc\":\""+proDet[2]+"\",\"unit_price\":\""+proDet[3]+"\",\"amount\":\""+eCartObj[1]+"\",\"stock\":\""+eCartObj[2]+"\"}";
-    		System.out.println(pdObj);
     		proHistory.add(pdObj);
     	}
     	return proHistory;
     }
-    
+    public void deleteProductFromCart(Long product_id) {
+    	shoppingCartRepository.deleteProductById(product_id);
+    }
     
 }
 

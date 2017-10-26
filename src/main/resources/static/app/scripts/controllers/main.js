@@ -31,7 +31,7 @@ app.controller('myCtrl', function($scope, $http, $window) {
 	  $scope.itemDetails = {
 			  productId : pro.id,
 			  stock : stocks,
-			  status : "PURCHASED",
+			  status : "ACTIVE",
 	  }
 	  alert($scope.itemDetails);
 	  alert(JSON.stringify($scope.itemDetails));

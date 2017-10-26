@@ -11,7 +11,6 @@ public class ShoppingCartUtil {
 	
 	
 	public Cookie getShoppingCartCookie(HttpServletRequest request, String cookieName){
-		System.out.println("In getShoppingCartCookie()...");
 		if(request.getCookies() != null){
 			Cookie[] cookies  = request.getCookies();
 			for (Cookie cookie : cookies) {

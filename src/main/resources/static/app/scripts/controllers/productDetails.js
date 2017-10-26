@@ -67,7 +67,7 @@ proApp.controller('proCtrl', function($scope, $http, $window) {
   	var product = new Object();
 	  product.productId = iniProData.productId;
 	  product.stock = document.getElementById("proQut").value;
-	  product.status = 'PURCHASED';
+	  product.status = 'ACTIVE';
 	  $http({
           method: "POST",
           url: "http://" + host + "/shoppingcart/shoppingCart/addProdcut",

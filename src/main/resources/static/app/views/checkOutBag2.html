@@ -374,12 +374,8 @@ color:blue !important;
 									src="https://slimages.macysassets.com/is/image/MCY/products/2/optimized/8659622_fpx.tif?$filtermed$&amp;wid=100">
 							</a>
 							</span> <span class="itemDescription">
-								<div class="itemName">
-									<a
-										href="https://www.macys.com"
-										class="productName productUrl" id="href_3_productDesc">
-										
-										<h3><b><span id='bagProName'>{{details.productName}}</span></b></h3></a>
+								<div class="itemName" id="bagProName">
+										<h3><b><span >{{details.productName}}</span></b></h3>
 								</div> 
 								<!-- <span id="lineItemColor_3" class="itemColor"> <span
 									class="label">Color: </span> <span class="valColor">Heather</span><br>
@@ -389,8 +385,8 @@ color:blue !important;
 									class="label">Size: </span> <span class="valSize"></span><br>
 							</span>  -->
 							<br>
-							<span class="itemWebId"> <span class="label">Web
-										ID: </span> <span id="webID_4591384" class="valWebId">{{details.proId}}</span><br>
+							<span class="itemWebId" id="productId"> <span class="label">Web
+										ID: </span> <span class="valWebId">{{details.proId}}</span><br>
 							</span>
 							</span>
 						</div>
@@ -410,7 +406,7 @@ color:blue !important;
 						</div>
 						<div class=colTotalPrice id='priceDesc'><b>Item total: INR: {{ details.ammount | number : 2 }}</b>
 						<br>
-						<p>INR: {{ details.unitPrice | number : 2 }}</p>
+						<p><span style="color: red">Sale INR: {{ details.unitPrice | number : 2 }}</span></p>
 						</div>
 						<div class="makeChoice" id="makeChoiceColors_3"></div>
 						<div class="makeChoice" id="makeChoiceSizes_3"></div>
@@ -423,7 +419,7 @@ color:blue !important;
 							<div class="clearFloats"></div>
 							<div style="float: right; padding-top: 3px;">
 								<div class="removeLink"
-									id="remove_item_37384129_3_2" ng-click='fnRemoveItemFromCart()'>Remove</div>
+									id="remove_item_37384129_3_2" ng-click='fnRemoveItemFromCart(details.proId)'>Remove</div>
 								&nbsp;&nbsp;
 							</div>
 						</div>

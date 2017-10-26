@@ -35,14 +35,10 @@ public class UserProfileController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{ip}/generateUserId")
 	public void generateUserId(HttpServletRequest request, HttpServletResponse response, @PathVariable("ip") String ip) {
-		System.out.println("In generateUserId()....To generate userId and write cookies for IP..."+ip);
 		String userId = ip.replace(".", "*");
-		//request.getco
-		System.out.println(ip+"---ip---userid----"+userId);
 		Cookie ck=new Cookie("shoppingCart","guest,"+userId);
 		ck.setPath("/");
 		response.addCookie(ck);
-		System.out.println("cookies has been written....");
 	}
 
 }

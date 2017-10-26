@@ -20,7 +20,7 @@ app.controller("menActiveWareCntrl", function($scope, $http, $window) {
 	
 	$scope.addToCart=function(proId){
 		var stocks = 1; //dummy value
-		var status = 'PURCHASED'; //dummy value
+		var status = 'ACTIVE'; //dummy value
 		var module = 'MEN';
 		var subModule = 'MEN_ACTIVE_WARE';
 		var host = $window.location.host;
