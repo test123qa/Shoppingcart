@@ -34,13 +34,16 @@ var userId = eachPar[1].split("=")[1];
 		  });
 	 
 	 $scope.fnRemoveItemFromCart = function(proId){
-		 $http({
-			 method: "DELETE",
-			 url: "http://" +host + "/shoppingcart/shoppingCart/deleteProductById/"+proId
-		 }).then(function mySuccess(response) {
-			  console.log(JSON.stringify(response.data))
-		    }, function myError(response) {
-		      $scope.myWelcome = response.statusText;
-		  });
+		 var okToRefresh = confirm("Do you really want to remove this item from cart?");
+		 if(okToRefresh){
+			 $http({
+				 method: "DELETE",
+				 url: "http://" +host + "/shoppingcart/shoppingCart/deleteProductById/"+proId
+			 }).then(function mySuccess(response) {
+				  console.log(JSON.stringify(response.data))
+			    }, function myError(response) {
+			      $scope.myWelcome = response.statusText;
+			  });
+		 }
 	 }
 });
