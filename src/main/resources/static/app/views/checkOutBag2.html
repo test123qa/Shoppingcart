@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Macy's Shopping bag</title>
+<link rel="stylesheet" href="../css/index.css">
 </head>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
@@ -281,6 +282,24 @@ padding-left: 45px !important;
 color:blue !important;
 
 }
+.dropbtn {
+	background-color: #4CAF50;
+	color: white;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	margin-left: 150px;
+}
+.img {
+	margin-left: 130px;
+	/* margin-top: 80px; */
+}
+
+.img-search {
+	margin-left: 1200px;
+	margin-top: -80px;
+	
+}
 </style>
 <body ng-app='checkOutBagApp'>
 <div ng-controller='proCrl'>
@@ -291,17 +310,39 @@ color:blue !important;
 		<a href="/shoppingcart"> <img src="../images/stopandshop.jpg"
 			style="width: 200px; height: 100px;" class="img-rounded"
 			alt="Cinque Terre">
-		</a> <br> <br>
+		</a> 
 	</div>
-	<div id="shoppingBagStore">
-		<div class="globalMastheadBagIconShoppingBag"></div>
-		<div id="shoppingBagHeadingDiv"
-			class="yourShoppingBag redesign-bops-panel">
-			Shopping Bag
-			<p id="shoppingBagId">Bag ID: 1044-397227</p>
+	<div>
+			<div class="dropdown">
+				<button class="dropbtn" style="margin-left: 250px">Women</button>
+				<div class="dropdown-content" style="margin-left: 250px">
+					<a href="#">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
+						href="">Coats</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn" style="margin-left: 250px">Men</button>
+				<div class="dropdown-content" style="margin-left: 250px">
+					<a href="/shoppingcart/app/views/men-activeWare.html">Active
+						Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a href="">Coats</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn" style="margin-left: 150px">Kids</button>
+				<div class="dropdown-content" style="margin-left: 150px">
+					<a href="#">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
+						href="">Coats</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn" style="margin-left: 200px">Home
+					Appliances</button>
+				<div class="dropdown-content" style="margin-left: 200px">
+					<a href="#">Kitchen</a> <a href="#">Furniture</a> <a href="#">Electronics</a>
+				</div>
+			</div>
+
 		</div>
-		<input type="hidden" id="bagId" value="1044-397227">
-	</div>
 	<div class="bagItems redesign-pros-panel" id="bagItems">
 		<div id="generalErrorContent">
 			<!-- <div id="unavailableHeaderMsg"
@@ -417,9 +458,9 @@ color:blue !important;
 						</div>
 						<div style="padding-bottom: 9px; width: 100%">
 							<div class="clearFloats"></div>
-							<div style="float: right; padding-top: 3px;">
+							<div style="padding-top: 3px; margin-left: 800px; margin-top: -80px;">
 								<div class="removeLink"
-									id="remove_item_37384129_3_2" ng-click='fnRemoveItemFromCart(details.proId)'>Remove</div>
+									id="remove_item_37384129_3_2" ng-click='fnRemoveItemFromCart(details.proId)' onClick="window.location.reload()">Remove</div>
 								&nbsp;&nbsp;
 							</div>
 						</div>
