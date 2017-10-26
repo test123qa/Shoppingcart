@@ -19,6 +19,7 @@ app.controller("menActiveWareCntrl", function($scope, $http, $window) {
 	});
 	
 	$scope.addToCart=function(proId){
+		proId = proId[0];
 		var stocks = 1; //dummy value
 		var status = 'ACTIVE'; //dummy value
 		var module = 'MEN';
