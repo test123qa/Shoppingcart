@@ -146,8 +146,8 @@ public class ShoppingCartService {
     
     public List<ProductDetails> summaryBagDetailsService(Long userId) {
     	List<ProductDetails> proHistory = new ArrayList<ProductDetails>();
-    	List<Object[]> cartListObj = shoppingCartRepository.getPurchasedDetails(userId);
     	updateProductStatus(userId);
+    	List<Object[]> cartListObj = shoppingCartRepository.getPurchasedDetails(userId);
     	for(int i=0; i<cartListObj.size();i++) {
     		Object[] eCartObj = cartListObj.get(i);
     		BigInteger proId = (BigInteger)eCartObj[0];
