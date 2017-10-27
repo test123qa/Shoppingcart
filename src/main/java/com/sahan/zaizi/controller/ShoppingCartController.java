@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by sahan on 4/9/2016.
  */
@@ -20,8 +22,8 @@ public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json", consumes = "application/json", value="/addProdcut")
-    public ShoppingCart addProductItem(@RequestBody ShoppingCartDTO shoppingCartDTO) {
-        return shoppingCartService.saveProducts(shoppingCartDTO);
+    public ShoppingCart addProductItem(@RequestBody ShoppingCartDTO shoppingCartDTO, HttpServletRequest request) {
+        return shoppingCartService.saveProducts(shoppingCartDTO, request);
     }
 
 
@@ -50,9 +52,9 @@ public class ShoppingCartController {
         shoppingCartService.purchaseProducts(id);
     }
     
-    @RequestMapping(method = RequestMethod.GET, value = "/showMyBag/{productId}/{userId}")
-    public String showMyBag(@PathVariable("productId") Long productId, @PathVariable("userId") Long userId) {
-    	return shoppingCartService.showMyBag(productId, userId);
+    @RequestMapping(method = RequestMethod.GET, value = "/showMyBag/{productId}")
+    public String showMyBag(@PathVariable("productId") Long productId, HttpServletRequest request) {
+    	return shoppingCartService.showMyBag(productId, request);
     }
     
     

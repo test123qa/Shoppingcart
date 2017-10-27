@@ -224,7 +224,7 @@ div.ftButtons a {
 <body ng-app="userBagApp">
 
 <div id="bagSummaryView" class="bagSummaryViewCSS"  ng-controller="userBagCtrl">
-
+<input type="hidden" id="userId" value="{{ bagPayload.userId }}">
 	<div id="bagHeading" class="bagHeadingCSS">
 		<div id="bagHeadingMsg" class="bagHeadingMsgCSS">
 			{{ bagPayload.productCount }} item added to your bag

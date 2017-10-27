@@ -2,9 +2,12 @@ package com.sahan.zaizi.service;
 
 import com.sahan.zaizi.domain.User;
 import com.sahan.zaizi.repository.UserRepository;
+import com.sahan.zaizi.util.ShoppingCartUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,9 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private ShoppingCartUtil shoppingCartUtil;
 
     private static List<User> users = new ArrayList<>();
 
@@ -27,6 +33,18 @@ public class UserService {
 
     public void saveInitialBatch(){
         userRepository.save(users);
+    }
+    
+    public User saveUserDetails(String ip, String userId, HttpServletRequest request){
+    	System.out.println("In UserService....saveUserDetails() method....");
+    	String userGeoLocation = shoppingCartUtil.getIPInfo(ip);
+    	System.out.println(userGeoLocation);
+    	User user = new User();
+    	user.setUserType("guest");
+    	user.setTempUserId(userId);
+    	user.setGeoLocation(userGeoLocation);
+    	User u = userRepository.save(user);
+    	return u;
     }
 
 }

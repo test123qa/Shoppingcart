@@ -20,12 +20,12 @@ proApp.controller('userBagCtrl', function($scope, $http, $window) {
         //var product = new Object();
 	  productId = eachPar[0].split("=")[1];
 	  //var productCount = eachPar[1].split("=")[1];
-	  userId = 1;
+	  //userId = 1;
 	  var host = $window.location.host;
-	  console.log(productId+"-----"+userId)
+	  console.log(productId+"-----")
         $http({
             method : "GET",
-            url : "http://" + host + "/shoppingcart/shoppingCart/showMyBag/"+productId+"/"+userId,
+            url : "http://" + host + "/shoppingcart/shoppingCart/showMyBag/"+productId,
             headers: {
     	        'Content-Type': 'application/json',
     	        'Accept': 'application/json' 
@@ -44,10 +44,11 @@ proApp.controller('userBagCtrl', function($scope, $http, $window) {
     }
     
     fnViewBagCheckOut=function(){
-   
+    	var logginUserId = document.getElementById("userId").value;
+    	console.log("Loggin user id..."+logginUserId);
     	var host = $window.location.host;
 	      var landingUrl = "http://" + host + "/shoppingcart/app/views/checkOutBag2.html";
-	      landingUrl = landingUrl+"?productId="+productId+";userId="+userId;
+	      landingUrl = landingUrl+"?productId="+productId+";userId="+logginUserId;
 	      console.log(landingUrl)
         $window.location.href = landingUrl;
     }

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sahan.zaizi.domain.User;
 import com.sahan.zaizi.repository.UserRepository;
+import com.sahan.zaizi.service.UserService;
+import com.sahan.zaizi.util.ShoppingCartUtil;
 
 /**
  * @author nisum
@@ -27,6 +29,12 @@ public class UserProfileController {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private ShoppingCartUtil shoppingCartUtil;
+	
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/profile", consumes = "application/json", produces = "application/json")
 	public void addUser(@RequestBody User user) {
@@ -35,10 +43,19 @@ public class UserProfileController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{ip}/generateUserId")
 	public void generateUserId(HttpServletRequest request, HttpServletResponse response, @PathVariable("ip") String ip) {
+		System.out.println("In generateUserId()....To generate userId and write cookies for IP..."+ip);
+		Cookie cookie = shoppingCartUtil.getShoppingCartCookie(request, "shoppingCart");
 		String userId = ip.replace(".", "*");
-		Cookie ck=new Cookie("shoppingCart","guest,"+userId);
-		ck.setPath("/");
-		response.addCookie(ck);
+		if(cookie == null){
+			System.out.println(ip+"---ip---userid----"+userId);
+			User user = userService.saveUserDetails(ip, userId, request);
+			Cookie ck=new Cookie("shoppingCart","guest,"+user.getId());
+			ck.setPath("/");
+			response.addCookie(ck);
+			System.out.println("cookies has been written....");
+		}else{
+			System.out.println("Cookies has already written.");
+		}
 	}
 
 }

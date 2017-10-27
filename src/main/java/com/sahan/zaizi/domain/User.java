@@ -34,6 +34,9 @@ public class User implements Serializable {
 	private String pwd;
 	private String firstName;
 	private String lastName;
+	private String userType;
+	private String geoLocation;
+	private String tempUserId;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date DOB;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
@@ -93,6 +96,30 @@ public class User implements Serializable {
 
 	public String getLastName() {
 		return lastName;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public String getGeoLocation() {
+		return geoLocation;
+	}
+
+	public void setGeoLocation(String geoLocation) {
+		this.geoLocation = geoLocation;
+	}
+
+	public String getTempUserId() {
+		return tempUserId;
+	}
+
+	public void setTempUserId(String tempUserId) {
+		this.tempUserId = tempUserId;
 	}
 
 	public void setLastName(String lastName) {

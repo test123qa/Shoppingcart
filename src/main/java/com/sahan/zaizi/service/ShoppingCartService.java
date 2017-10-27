@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.sahan.zaizi.service.ProductService;
+import com.sahan.zaizi.util.ShoppingCartUtil;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -20,6 +21,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by sahan on 4/9/2016.
@@ -33,6 +37,9 @@ public class ShoppingCartService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private ShoppingCartUtil shoppingCartUtil;
 
     @Autowired
     private ShoppingCartRepository shoppingCartRepository;
@@ -42,11 +49,22 @@ public class ShoppingCartService {
     
     Logger logger = Logger.getLogger(ShoppingCartService.class);
 
-    public ShoppingCart saveProducts(ShoppingCartDTO shoppingCartDTO) {
+    public ShoppingCart saveProducts(ShoppingCartDTO shoppingCartDTO, HttpServletRequest request) {
         ShoppingCart shoppingCart = new ShoppingCart();
         Product product = productRepository.findOne(shoppingCartDTO.getProductId());
         shoppingCart.setProduct(product);
-        shoppingCart.setUser(userRepository.findOne(1L));
+        Cookie cookie = shoppingCartUtil.getShoppingCartCookie(request, "shoppingCart");
+    	Long userId;
+    	if(cookie != null){
+    		String value = cookie.getValue();
+    		 userId = Long.parseLong(value.split(",")[1]);
+    	}else{
+    		System.out.println("Oops!...Cookie is not available...");
+    		System.out.println("Setting default userId...."+1);
+    		userId = 1L;
+    	}
+    	System.out.println("===>   "+userId);
+        shoppingCart.setUser(userRepository.findOne(userId));
         shoppingCart.setStatus(shoppingCartDTO.getStatus());
         shoppingCart.setDate(new Date());
         shoppingCart.setStock(shoppingCartDTO.getStock());
@@ -114,11 +132,22 @@ public class ShoppingCartService {
     return listObj2;
     }
     
-    public String showMyBag(Long productId, Long UserId) {
-    	List<Object[]> bagDataList = shoppingCartRepository.showMyBag(UserId, productId);
+    public String showMyBag(Long productId, HttpServletRequest request) {
+    	System.out.println("In shoppingCartService...showMyBag() method...");
+    	Cookie cookie = shoppingCartUtil.getShoppingCartCookie(request, "shoppingCart");
+    	Long userId;
+    	if(cookie != null){
+    		String value = cookie.getValue();
+    		 userId = Long.parseLong(value.split(",")[1]);
+    	}else{
+    		System.out.println("Oops!...Cookie is not available...");
+    		System.out.println("Setting default userId...."+1);
+    		userId = 1L;
+    	}
+    	List<Object[]> bagDataList = shoppingCartRepository.showMyBag(userId, productId);
     	Object[] bagData = bagDataList.get(0);
     	
-    	String str = "{\"productDesc\" : \""+bagData[0]+"\", \"productAmount\" : \""+bagData[1]+"\", \"productCount\" : \""+bagData[2]+"\", \"totalProductCount\" : \""+bagData[3]+"\", \"totalAmount\" : \""+bagData[4]+"\"}";
+    	String str = "{\"productDesc\" : \""+bagData[0]+"\", \"productAmount\" : \""+bagData[1]+"\", \"productCount\" : \""+bagData[2]+"\", \"totalProductCount\" : \""+bagData[3]+"\", \"totalAmount\" : \""+bagData[4]+"\", \"userId\" : \""+userId+"\"}";
     	return str;
     }
     
