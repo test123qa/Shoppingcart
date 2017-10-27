@@ -46,4 +46,10 @@ var userId = eachPar[1].split("=")[1];
 			  });
 		 }
 	 }
+	 $scope.checkout = function(){
+		 var userId = 1;
+		 var landingUrl = "http://" + host + "/shoppingcart/app/views/checkOutBag.html"+"?userId=" +userId;
+		 $window.location.href = landingUrl;
+		 
+	 }
 });

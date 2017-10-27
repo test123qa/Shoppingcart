@@ -61,6 +61,11 @@ public class ShoppingCartController {
     	return shoppingCartService.checkOutBagDetailsService(userId);
     }
     
+    @RequestMapping(method = RequestMethod.GET, value = "/summaryBagDetailsController/{productId}/{userId}")
+    public List<ProductDetails> summaryBagDetailsController(@PathVariable("userId") Long productId, @PathVariable("productId") Long userId) {
+    	return shoppingCartService.summaryBagDetailsService(userId);
+    }
+    
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteProductById/{proId}")
     public void deleteProductFromCart(@PathVariable("proId") Long product_id) {
     	shoppingCartService.deleteProductFromCart(product_id);
