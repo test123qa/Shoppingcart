@@ -22,16 +22,24 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long
 	public List<Object[]> showMyBag(@Param("userId") Long userId, @Param("productId") Long productId);
 	
 
-	@Query(value = "SELECT sc.product_id, sum(sc.amount) as amount, sum(sc.stock) as stock  FROM shoppingCart.shopping_cart sc  where sc.user_id =:userId group by sc.product_id" , nativeQuery = true)
+	@Query(value = "SELECT sc.product_id, sum(sc.amount) as amount, sum(sc.stock) as stock  FROM shopping_cart sc  where sc.user_id =:userId and sc.status = 'ACTIVE' group by sc.product_id" , nativeQuery = true)
 	public List<Object[]> getCartDetails(@Param("userId") Long userId);
 	
-	@Query(value = "select product.id, product.name, product.description, product.unit_price from shoppingCart.product product where product.id=:proId" , nativeQuery = true)
+	@Query(value = "SELECT sc.product_id, sum(sc.amount) as amount, sum(sc.stock) as stock  FROM shopping_cart sc  where sc.user_id =:userId and sc.status = 'PURCHASED' group by sc.product_id" , nativeQuery = true)
+	public List<Object[]> getPurchasedDetails(@Param("userId") Long userId);
+	
+	@Query(value = "select product.id, product.name, product.description, product.unit_price from product product where product.id=:proId" , nativeQuery = true)
 	public List<Object[]> getProductDetails(@Param("proId") BigInteger proId);
 
 	@Modifying
 	@Transactional
 	@Query(value = "delete from shopping_cart where product_id=:product_id", nativeQuery=true)
 	public void deleteProductById(@Param("product_id") Long product_id);
+
+	@Modifying
+	@Transactional
+	@Query(value="update shopping_cart set status = 'PURCHASED' where user_id =:user_id", nativeQuery=true)
+	public void updateProductStatus(@Param("user_id") Long user_id);
 	
 	
 }

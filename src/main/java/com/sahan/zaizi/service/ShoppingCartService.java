@@ -143,8 +143,36 @@ public class ShoppingCartService {
     	}
     	return proHistory;
     }
+    
+    public List<ProductDetails> summaryBagDetailsService(Long userId) {
+    	List<ProductDetails> proHistory = new ArrayList<ProductDetails>();
+    	List<Object[]> cartListObj = shoppingCartRepository.getPurchasedDetails(userId);
+    	updateProductStatus(userId);
+    	for(int i=0; i<cartListObj.size();i++) {
+    		Object[] eCartObj = cartListObj.get(i);
+    		BigInteger proId = (BigInteger)eCartObj[0];
+    		List<Object[]> proListObj = shoppingCartRepository.getProductDetails(proId);
+    		Object[] proDet = proListObj.get(0);
+    		
+    		ProductDetails  pdObj = new ProductDetails();
+    		pdObj.setProId((BigInteger)proDet[0]);
+    		pdObj.setProductName((String)proDet[1]);
+    		pdObj.setProcDesc((String)proDet[2]);
+    		pdObj.setUnitPrice(((Double)proDet[3]));
+    		pdObj.setAmmount(((Double)eCartObj[1]));
+    		pdObj.setStockDec((BigDecimal)eCartObj[2]);
+    		String productDetails = "{\"proId\":\""+proDet[0]+"\",\"name\":\""+proDet[1]+"\",\"desc\":\""+proDet[2]+"\",\"unit_price\":\""+proDet[3]+"\",\"amount\":\""+eCartObj[1]+"\",\"stock\":\""+eCartObj[2]+"\"}";
+    		proHistory.add(pdObj);
+    	}
+    	return proHistory;
+    } 
+    
     public void deleteProductFromCart(Long product_id) {
     	shoppingCartRepository.deleteProductById(product_id);
+    }
+    
+    public void updateProductStatus(Long userId) {
+    	shoppingCartRepository.updateProductStatus(userId);
     }
     
 }
