@@ -47,7 +47,9 @@ var userId = eachPar[1].split("=")[1];
 		 }
 	 }
 	 $scope.checkout = function(){
-		 var userId = 1;
+		 var host = $window.location.host;
+		 var loc = $window.location.href;
+		 var userId = window.location.href.split("?")[1].split(";")[1].split("=")[1];
 		 var landingUrl = "http://" + host + "/shoppingcart/app/views/checkOutBag.html"+"?userId=" +userId;
 		 $window.location.href = landingUrl;
 		 

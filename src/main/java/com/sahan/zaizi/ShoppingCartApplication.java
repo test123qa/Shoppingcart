@@ -15,9 +15,9 @@ public class ShoppingCartApplication {
 		ProductService productService = applicationContext.getBean(ProductService.class);
 		productService.saveInitialBatch();
 
-		UserService userService = applicationContext.getBean(UserService.class);
+		/*UserService userService = applicationContext.getBean(UserService.class);
 		userService.saveInitialBatch();
-
+*/
 
 	}
 }

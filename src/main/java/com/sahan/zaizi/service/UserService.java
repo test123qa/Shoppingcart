@@ -26,14 +26,14 @@ public class UserService {
 
     private static List<User> users = new ArrayList<>();
 
-    static {
+    /*static {
         users.add(new User("user1@gmail.com","user1", "admin"));
         users.add(new User("user2@gmail.com","user2", "root"));
     }
 
     public void saveInitialBatch(){
         userRepository.save(users);
-    }
+    }*/
     
     public User saveUserDetails(String ip, String userId, HttpServletRequest request){
     	System.out.println("In UserService....saveUserDetails() method....");
