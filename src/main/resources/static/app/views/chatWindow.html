@@ -1,0 +1,47 @@
+<div id="dialog-form" title="Chat With Us" style="background: white;">
+	<form id="myForm" autocomplete="off">
+		<div id="chatConversationWindow">
+			<ul id="chatConversation"></ul>
+		</div>
+		<div>
+			<input type="text" name="chat" id="chat"  class="text ui-widget-content ui-corner-all" style="bottom:0;right:0;margin-top: 230px;" />
+		</div>
+		</form>  
+</div>
+<script>
+	$(document).ready(function() {
+		var dialog, chatConversation;
+		var chatInput = $("#chat");
+		var chatDialog = $("#dialog-form");
+		chatDialog.dialog({
+			autoOpen: false,
+			 position: {
+                 my: "right bottom",
+                 at: "right bottom",
+                 of: window
+             },
+			width: 350,
+			height:350,
+			modal: false,
+			draggable: false,
+			resizable: false,
+			dialogClass: "dialogRoundedCorner"
+		});
+		chatDialog.dialog("open");
+		$("#btnChatWindow").hide();
+		
+		document.forms.myForm.onsubmit = function(e) {			
+            e = e || event;
+            e.preventDefault();
+			if($("#chat").val() != "") {
+				$("#chatConversation").append("<li class='chatMessage'>"+ chatInput.val() +"</li>");
+				$("#chatConversationWindow").scrollTop(9999999);
+				$("#chat").val("");
+			};
+        };
+		chatDialog.on("dialogclose", function() {
+			$("#btnChatWindow").show();
+		});
+	});
+	 
+</script>
