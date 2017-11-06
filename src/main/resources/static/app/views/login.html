@@ -1,101 +1,165 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Shopping Cart</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="../styles/main.css">
-    <!-- endbuild -->
-</head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<body ng-app="demoApp">
-<!--[if lte IE 8]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
-<![endif]-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Spring Security Example </title>
+        <style type="text/css">
+.main-border {
+	background-color: #fff;
+	border-color: #ccc;
+	border-style: none solid solid;
+	border-width: 0 1px 1px;
+}
 
-<!-- Add your site or application content here -->
-<div class="header">
-    <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
+.signin-container {
+    padding: 10px 0 40px 0;
+    overflow: hidden;
+}
 
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#js-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+.small-centered {
+    margin-left: auto;
+    margin-right: auto;
+    float: none!important;
+}
 
-                <a class="navbar-brand">Shopping Cart<span class="glyphicon icon-shopping-bag"></span></a>
-            </div>
+.small-14 {
+    width: 87.5%;
+}
 
-            <div class="collapse navbar-collapse" id="js-navbar-collapse">
+#globalContentContainer {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+    border: 1px solid #d5d5d5;
+    background-color: #FFF;
+}
 
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/shoppingcart/app/views/main.html">Products</a></li>
-                    <li class="active"><a href="/shoppingcart/app/views/cart.html">Cart</a></li>
-                    <li class="active"><a href="/shoppingcart/app/views/history.html">History</a></li>
-                    <!--<li><a ng-href="#/about">About</a></li>-->
-                    <!--<li><a ng-href="#/">Contact</a></li>-->
-                </ul>
-            </div>
+.row {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: 100%;
+    width: 100%;
+}
+
+#globalContentContainer .signin-container .account-signin {
+    padding: 10px 50px 0 0;
+}
+
+form.standard-form .row .row .columns {
+    padding: 0 0.5em;
+}
+
+.standard-form label.inline {
+    padding: 1.25em 0;
+    margin: 0;
+}
+</style>
+    </head>
+    <body>
+    
+    
+    
+   <div id="globalContentContainer">
+        <div class="row">
+	<form id="signInForm" class="accSigninForm standard-form" action="/shoppingcart/login" method="post">
+		<div class="row main-border">
+			
+			<div class="small-14 columns small-centered signin-container">
+                	<h3>Sign in</h3>
+				<div class="row error-class-row formMsgs">
+                	<div class="small-16 small-centered columns error-container">
+
+
+
+                	</div>
+		        </div> 
+				<div class="small-8 columns account-signin">
+					<div class="row">
+						<div class="columns small-6">
+							<label for="email" class="inline right">
+								User ID
+							</label>
+						</div>
+						<div class="columns small-9">
+							<input id="username" name="username" type="text" maxlength="75" placeholder="Username" autofocus="true">
+						</div>
+						<div class="small-1 columns errorIcon ">&nbsp;</div>
+					</div>
+					<div class="row">
+						<div class="columns small-6">
+							<label for="password" class="accFormlabel inline right">
+								Password
+							</label>
+						</div>
+						<div class="columns small-9">
+							<input id="password" name="password" class="signinLabels" type="password" maxlength="16" placeholder="Password">
+						</div>
+						<div class="small-1 columns errorIcon ">&nbsp;</div>
+					</div>
+					
+					<div class="row">
+						<div class="columns small-6"></div>
+						<div class="columns small-10">
+							<span id="accountCaseSensitive" class="text-help">
+								Password is case sensitive.
+							</span>
+                            <a href="#" id="forgotPassword">forgot your password</a><span class="qtnmark">?</span>
+
+							<div class="row">
+							    <div class="small-16 columns">
+									<button type="submit" id="signInBtn" class="button small radius" name="accountSignIn"><span>Sign in</span></button>
+                                </div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<!-- End of login column -->
+			</div>	
+		</div>
+	</form>
+
+
+
+       </div>
+       <!-- End of row -->
+    </div>
+    
+<!-- <div class="mainsection"> 
+<section class="content">
+	
+    <div id="maintext">
+	    <img src="https://static.cdn.responsys.net/i2/responsysimages/macys/contentlibrary/hosted_forms/iship_quick_reg/images/iship_qr_hostedpage_banner_v2.jpg" width="970" height="218" alt="Sign up for Macy's email" class="width100p hauto">
+	    <form id="target" method="post" action="https://emails.macys.com/pub/rf">  
+	    <input type="hidden" name="_ri_" value="X0Gzc2X%3DYQpglLjHJlTQGmG9evqpeESrN8cha9U8HXp6YDKze4zac6VwjpnpgHlpgneHmgJoXX0Gzc2X%3DYQpglLjHJlTQGmaIiNzdWGMqkEHTWSSzfKnlzeriSEiR8GI">
+	    <input type="hidden" name="aff_src" value="60">
+	
+		<div class="borderBox">
+		        <div class="innerBox1">
+			        <label for="firstName">First Name:</label><input type="text" id="fname" name="FIRST_NAME" class="baseInput"><br>
+			        <label for="lastName">Last Name:</label><input type="text" id="lname" name="LAST_NAME" class="baseInput"><br>
+			        <label for="email">Email:</label><input type="text" id="verifyemail" name="EMAIL_ADDRESS_" class="baseInput" value=""><br>
+		       </div>
+		</div>
+		</form>
+      </div>
+
+</section>
+</div> -->
+    
+    
+        <!-- <div th:if="${param.error}">
+            Invalid username and password.
         </div>
-    </div>
-</div>
-
-<div class="container">
-    <div ng-view=""></div>
-</div>
-
-<div class="footer">
-    <div class="container">
-        <p><span class="glyphicon glyphicon-eye-open"></span> Design by Kamesh Bandla</p>
-    </div>
-</div>
-
-
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-<script>
-    !function (A, n, g, u, l, a, r) {
-        A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
-                    (A[l].q = A[l].q || []).push(arguments)
-                }, A[l].l = +new Date, a = n.createElement(g),
-                r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
-    }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-XXXXX-X');
-    ga('send', 'pageview');
-</script>
-
-<!-- build:js(.) scripts/vendor.js -->
-<!-- bower:js -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-touch/angular-touch.js"></script>
-<!-- endbower -->
-<!-- endbuild -->
-
-<!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="app/scripts/app.js"></script>
-<script src="app/scripts/controllers/main.js"></script>
-<script src="app/scripts/controllers/cart.js"></script>
-<script src="app/scripts/controllers/history.js"></script>
-<!-- endbuild -->
-</body>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <form action="http://localhost:8080/shoppingcart/login" method="post">
+            <div><label> User Name : <input type="text" name="username"/> </label></div>
+            <div><label> Password: <input type="password" name="password"/> </label></div>
+            <div><input type="submit" value="Sign In"/></div>
+        </form> -->
+    </body>
 </html>

@@ -13,6 +13,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,14 +33,19 @@ public class User implements Serializable {
 	@Column(name = "id")
 	private Long id;
 
-	private String name;
+	private String userName;
 	private String email;
-	private String pwd;
+	private String password;
 	private String firstName;
 	private String lastName;
+	private String mobileNo;
 	private String userType;
 	private String geoLocation;
 	private String tempUserId;
+	@OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+	private Set<Role> roles;
+
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date DOB;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
@@ -45,10 +54,10 @@ public class User implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<ShoppingCart> shoppingCarts = new HashSet<>();
 
-	public User(String email, String name, String pwd) {
+	public User(String email, String userName, String password) {
 		this.email = email;
-		this.name = name;
-		this.pwd = pwd;
+		this.userName = userName;
+		this.password = password;
 	}
 
 	public User() {
@@ -62,12 +71,13 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return getFirstName() + " " + getLastName();
+
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getEmail() {
@@ -78,12 +88,13 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public String getPwd() {
-		return pwd;
+
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getFirstName() {
@@ -96,6 +107,15 @@ public class User implements Serializable {
 
 	public String getLastName() {
 		return lastName;
+	}
+
+	
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
 
 	public String getUserType() {
@@ -121,6 +141,24 @@ public class User implements Serializable {
 	public void setTempUserId(String tempUserId) {
 		this.tempUserId = tempUserId;
 	}
+	
+	/*@ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }*/
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
@@ -132,6 +170,14 @@ public class User implements Serializable {
 
 	public void setDOB(Date dOB) {
 		DOB = dOB;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userName=" + userName + ", email=" + email + ", password=" + password
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", mobileNo=" + mobileNo + ", userType="
+				+ userType + ", geoLocation=" + geoLocation + ", tempUserId=" + tempUserId + ", roles=" + roles
+				+ ", DOB=" + DOB + "]";
 	}
 
 }

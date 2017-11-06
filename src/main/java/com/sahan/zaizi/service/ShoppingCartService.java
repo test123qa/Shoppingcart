@@ -2,6 +2,7 @@ package com.sahan.zaizi.service;
 
 import com.sahan.zaizi.domain.Product;
 import com.sahan.zaizi.domain.ShoppingCart;
+import com.sahan.zaizi.domain.User;
 import com.sahan.zaizi.dto.ShoppingCartDTO;
 import com.sahan.zaizi.pojo.ProductDetails;
 import com.sahan.zaizi.repository.ProductRepository;
@@ -134,6 +135,13 @@ public class ShoppingCartService {
     
     public String showMyBag(Long productId, HttpServletRequest request) {
     	System.out.println("In shoppingCartService...showMyBag() method...");
+    	if(request.getSession(false) != null){
+    		System.out.println("Session id....."+request.getSession(false).getId());
+    		if(request.getSession(false).getAttribute("userDetails") != null){
+    			User user = (User) request.getSession(false).getAttribute("userDetails");
+    			System.out.println("User detaisl..."+user);
+    		}
+    	}
     	Cookie cookie = shoppingCartUtil.getShoppingCartCookie(request, "shoppingCart");
     	Long userId;
     	if(cookie != null){

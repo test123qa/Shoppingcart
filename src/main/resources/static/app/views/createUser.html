@@ -25,10 +25,19 @@
 	<div ng-app="createUser" ng-controller="createUserCntrl">
 		<form id="create-profile" class="standard-form">
 			<h2>Create account</h2>
+			
+			<div class="row">
+				<div class="col-sm-8">
+					<label for="userName">User Name : </label> <input id="userName"
+						name="userName" class="createFormTextFields" title="User Name"
+						data-validate="userName" type="text" value="" maxlength="20"
+						ng-model="payload.userName" required />
+				</div>
+			</div><br/>
 
 			<div class="row">
 				<div class="col-sm-8">
-					<label for="firstName">First name : </label> <input id="firstName"
+					<label for="firstName">First Name : </label> <input id="firstName"
 						name="firstName" class="createFormTextFields" title="First Name"
 						data-validate="firstName" type="text" value="" maxlength="20"
 						ng-model="payload.firstName" required />
@@ -37,7 +46,7 @@
 
 			<div class="row">
 				<div class="col-sm-8">
-					<label for="lastName">Last name : </label> <input id="lastName"
+					<label for="lastName">Last Name : </label> <input id="lastName"
 						name="lastName" class="createFormTextFields" title="Last Name"
 						data-validate="lastName" type="text" value="" maxlength="30"
 						ng-model="payload.lastName" required />
@@ -46,7 +55,7 @@
 
 			<div class="row">
 				<div class="col-sm-10">
-					<label for="email">Email address : </label> <input id="email"
+					<label for="email">Email Address : </label> <input id="email"
 						name="email" title="Email" type="text" value="" maxlength="75"
 						ng-model="payload.email" required>
 				</div>
@@ -57,7 +66,7 @@
 					<label for="password">Password : </label> <input id="password"
 						name="password" title="Password" type="password" value=""
 						maxlength="16" autocomplete="off" style="padding-right: 96px;"
-						ng-model="payload.pwd" required>
+						ng-model="payload.password" required>
 				</div>
 			</div><br/>
 

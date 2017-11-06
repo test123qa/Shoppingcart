@@ -18,9 +18,12 @@ public class ShoppingCartUtil {
 	
 	
 	public Cookie getShoppingCartCookie(HttpServletRequest request, String cookieName){
+		System.out.println("In getShoppingCartCookie()......");
 		if(request.getCookies() != null){
 			Cookie[] cookies  = request.getCookies();
+			System.out.println("Cookies list.........");
 			for (Cookie cookie : cookies) {
+				System.out.println(cookie.getName()+"-->>---"+cookie.getValue());
 				if(cookie.getName().equals(cookieName)){
 					return cookie;
 				}

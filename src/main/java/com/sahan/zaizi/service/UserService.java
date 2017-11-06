@@ -46,5 +46,10 @@ public class UserService {
     	User u = userRepository.save(user);
     	return u;
     }
+    
+    public User findByUserName(String userName){
+    	System.out.println("In UserService....saveUserDetails() method....");
+    	return userRepository.findByUserName(userName);
+    }
 
 }

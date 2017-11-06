@@ -43,16 +43,16 @@ public class loginController {
 	 * }
 	 */
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	/*@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String checkUser(@RequestBody User user) {
-
+System.out.println(user);
 		for (User usr : userRepository.findAll()) {
 			if (usr.getEmail().equals(user.getEmail()) && usr.getPwd().equals(user.getPwd())) {
 				return "http://localhost:9100/shoppingcart/app/views/login.html";
 			}
 		}
 		return null;
-	}
+	}*/
 
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/getUsers")
 	public List<User> getAllUsers() {
