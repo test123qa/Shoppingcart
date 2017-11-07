@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * Created by sahan on 4/9/2016.
  */
 @Entity
-@Table(name = "user")
+@Table(name = "shopping_user")
 public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

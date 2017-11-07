@@ -175,7 +175,7 @@ public class ShoppingCartService {
     		pdObj.setProcDesc((String)proDet[2]);
     		pdObj.setUnitPrice(((Double)proDet[3]));
     		pdObj.setAmmount(((Double)eCartObj[1]));
-    		pdObj.setStockDec((BigDecimal)eCartObj[2]);
+    		//pdObj.setStockDec((BigDecimal)eCartObj[2]);
     		String productDetails = "{\"proId\":\""+proDet[0]+"\",\"name\":\""+proDet[1]+"\",\"desc\":\""+proDet[2]+"\",\"unit_price\":\""+proDet[3]+"\",\"amount\":\""+eCartObj[1]+"\",\"stock\":\""+eCartObj[2]+"\"}";
     		proHistory.add(pdObj);
     	}
@@ -198,7 +198,7 @@ public class ShoppingCartService {
     		pdObj.setProcDesc((String)proDet[2]);
     		pdObj.setUnitPrice(((Double)proDet[3]));
     		pdObj.setAmmount(((Double)eCartObj[1]));
-    		pdObj.setStockDec((BigDecimal)eCartObj[2]);
+    		//pdObj.setStockDec((BigDecimal)eCartObj[2]);
     		String productDetails = "{\"proId\":\""+proDet[0]+"\",\"name\":\""+proDet[1]+"\",\"desc\":\""+proDet[2]+"\",\"unit_price\":\""+proDet[3]+"\",\"amount\":\""+eCartObj[1]+"\",\"stock\":\""+eCartObj[2]+"\"}";
     		proHistory.add(pdObj);
     	}

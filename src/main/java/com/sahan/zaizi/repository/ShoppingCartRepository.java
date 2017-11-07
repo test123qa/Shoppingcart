@@ -18,7 +18,7 @@ import java.util.List;
 public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long> {
     List<ShoppingCart> findByStatus(String status);
     
-    @Query(value = "SELECT p.description, sc.amount, sc.stock, (select sum(stock) from shopping_cart shop where shop.user_id=:userId and shop.status='ACTIVE') as totalCount, (select sum(amount) from shopping_cart shop where shop.user_id=:userId and shop.status='ACTIVE') as totalAmount FROM shopping_cart sc, user u, product p where sc.product_id=p.id and sc.user_id=u.id and sc.user_id=:userId and sc.product_id=:productId and sc.status='ACTIVE'" , nativeQuery = true)
+    @Query(value = "SELECT p.description, sc.amount, sc.stock, (select sum(stock) from shopping_cart shop where shop.user_id=:userId and shop.status='ACTIVE') as totalCount, (select sum(amount) from shopping_cart shop where shop.user_id=:userId and shop.status='ACTIVE') as totalAmount FROM shopping_cart sc, shopping_user u, product p where sc.product_id=p.id and sc.user_id=u.id and sc.user_id=:userId and sc.product_id=:productId and sc.status='ACTIVE'" , nativeQuery = true)
 	public List<Object[]> showMyBag(@Param("userId") Long userId, @Param("productId") Long productId);
 	
 
