@@ -2,22 +2,18 @@
  * 
  */
 
+var proApp = angular.module('loginApp', []);
 
-var app = angular.module("login", []);
-	app.controller("loginCntrl",function($scope, $http, $window) {
-		var host = $window.location.host;
-		$scope.login = function(username, password) {
-			$http({
-				url : "http://" + host +"/shoppingcart/login",
-				method : "POST",
-				data : {userName:username, password:password}
-				}).then(function(response) {
-				console.log(response);
-				}, function(response) { // optional
-				console.log(response);
+proApp.controller('loginMainCtrl', function($scope, $http, $window) {
+    angular.element(document).ready(function () {
+    	 var loc = (document.location).toString();
+         var qryPar = loc.split("?")[1];
+         //alert(qryPar);
+         if(qryPar == "error"){
+        	 alert("Wrong user id or password!");
+        	 $window.location.href = loc.split("?")[0];
+         }
+    });
+    
+});
 
-				});
-			
-		}
-
-	})
