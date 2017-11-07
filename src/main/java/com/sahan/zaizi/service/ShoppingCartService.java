@@ -64,7 +64,7 @@ public class ShoppingCartService {
     		System.out.println("Setting default userId...."+1);
     		userId = 1L;
     	}
-    	System.out.println("===>   "+userId);
+    	System.out.println("user id on adding product to cart===>   "+userId);
         shoppingCart.setUser(userRepository.findOne(userId));
         shoppingCart.setStatus(shoppingCartDTO.getStatus());
         shoppingCart.setDate(new Date());
@@ -152,6 +152,7 @@ public class ShoppingCartService {
     		System.out.println("Setting default userId...."+1);
     		userId = 1L;
     	}
+    	System.out.println("show bag user id....."+userId);
     	List<Object[]> bagDataList = shoppingCartRepository.showMyBag(userId, productId);
     	Object[] bagData = bagDataList.get(0);
     	
