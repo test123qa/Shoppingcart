@@ -363,7 +363,7 @@ div.bagContent .lineItem .makeChoice {
 							<div class="clearFloats"></div>
 							<div id="itemsContainer">
 								<div class="itemsHeader">
-									<div class="colItem">item</div>
+									<div class="colItem" style="margin-left: 200px;">item</div>
 									<div id="deliveryColHeading" class="colDelivery">delivery</div>
 									<div class="colQtyHeader">qty.</div>
 									<div class="colPriceHeader">price</div>
@@ -384,25 +384,26 @@ div.bagContent .lineItem .makeChoice {
 												<span class="itemImage"> <a
 													href="https://www.macys.com/shop/product/carters-1-pc.-dog-footed-pajamas-baby-boys-0-24-months?ID=4591384"
 													class="productUrl"> <img class="productImage"
-														src="https://slimages.macysassets.com/is/image/MCY/products/2/optimized/8659622_fpx.tif?$filtermed$&amp;wid=100">
+														ng-src="{{details.imageUrl}}">
 												</a>
 												</span> <span class="itemDescription">
-													<div class="itemName" id="bagProName">
+													<div class="itemName" id="bagProName" style="margin-left: 150px">
 														<h3>
 															<b><span>{{details.productName}}</span></b>
 														</h3>
-													</div> <span id='bagProcDesc'>{{details.procDesc}}</span> <br>
-													<span class="itemWebId" id="productId"> <span
+														<span id='bagProcDesc'>{{details.procDesc}}</span><br/>
+														<span class="itemWebId" id="productId"> <span
 														class="label">Web ID: </span> <span class="valWebId">{{details.proId}}</span><br>
 												</span>
+													</div>
 												</span>
 											</div>
-											<div class="colDelivery">
+											<div class="colDelivery" style="margin-left: 200px;">
 												<span class="stockAvailable"> In Stock: Usually ships
 													within 15 business days. </span>
 											</div>
 											<div class="colQtyUpdate">{{details.stockDec}}</div>
-											<div class=colTotalPrice id='priceDesc'>
+											<div  id='priceDesc'>
 												<b>Item total: INR: {{ details.ammount | number : 2 }}</b> <br>
 												<p>
 													<span style="color: red">Sale INR: {{
@@ -419,7 +420,7 @@ div.bagContent .lineItem .makeChoice {
 											<div style="padding-bottom: 9px; width: 100%">
 												<div class="clearFloats"></div>
 												<div
-													style="padding-top: 3px; margin-left: 800px; margin-top: -80px;">
+													style="padding-top: 3px; margin-left: 1000px; margin-top: -200px;">
 													<button class="removeLink"
 														ng-click='fnRemoveItemFromCart(details.proId)'
 														onClick="window.location.reload()">Remove</button>

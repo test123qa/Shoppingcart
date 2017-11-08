@@ -7,6 +7,10 @@ var app = angular.module("menActiveWare", []);
 app.controller("menActiveWareCntrl", function($scope, $http, $window) {
 
 	var hostName = $window.location.host;
+	$scope.myImages = ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg","5.jpeg","6.jpeg","7.jpeg","8.jpeg","9.jpeg","10.jpeg"];
+	$scope.getImagePath = function(imageName) {
+		return "http://"+hostName +"/shoppingcart/app/images/" + imageName;
+		};
 	$http({
 		method : "GET",
 		url : "http://" + hostName + "/shoppingcart/products/getProductBy/MEN/MEN_ACTIVE_WARE",

@@ -7,8 +7,6 @@ var proApp = angular.module('procApp', []);
 proApp.controller('proCtrl', function($scope, $http, $window) {
 	var host = $window.location.host;
 	document.getElementById('men').style.display = 'none';
-	document.getElementById('women').style.display = 'none';
-	document.getElementById('kids').style.display = 'none';
 	var iniProData = undefined;
 	var module = undefined;
 	var subModule = undefined;
@@ -39,6 +37,7 @@ proApp.controller('proCtrl', function($scope, $http, $window) {
             	  $scope.productName = iniProData.productName;
             	  $scope.priceSale =  iniProData.unitPrice;
             	  $scope.proQut = iniProData.stock;
+            	  $scope.imageUrl = iniProData.imageUrl;
             	  $scope.mainDesc = iniProData.procDesc;
             	  $scope.webId = "Web Id "+iniProData.productId;
               }

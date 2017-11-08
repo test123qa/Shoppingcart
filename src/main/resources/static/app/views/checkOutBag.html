@@ -369,10 +369,10 @@ Your order has been placed and is being processed. When the item(s) are shipped,
 					<div class="clearFloats"></div>
 					<div id="itemsContainer">
 					<div class="itemsHeader" style="color: white; font-size: 18px">
-									<div class="colItem">Item Purchased</div>
+									<div class="colItem" style="margin-left: 200px;">Item Purchased</div>
 									<div id="deliveryColHeading" class="colDelivery">delivery</div>
 									<div class="colQtyHeader">qty.</div>
-									<div class="colPriceHeader">price</div>
+									<div class="colPriceHeader" style="margin-left: 200px;">price</div>
 								</div>
 						<ul>
 							<li ng-repeat="details in history1">
@@ -386,26 +386,26 @@ Your order has been placed and is being processed. When the item(s) are shipped,
 										id="lineItemError_3"></div>
 									<div class="colItem" style="display: inline;" height:40px>
 										<span class="itemImage"> <a
-											href="https://www.macys.com/shop/product/carters-1-pc.-dog-footed-pajamas-baby-boys-0-24-months?ID=4591384"
+											href=""
 											class="productUrl"> <img class="productImage"
-												src="https://slimages.macysassets.com/is/image/MCY/products/2/optimized/8659622_fpx.tif?$filtermed$&amp;wid=100">
+												ng-src="{{details.imageUrl}}" style="width: 150px">
 										</a>
-										</span> <span class="itemDescription" style="margin-top: -138px;">
+										</span> <div style="margin-top: -100px; margin-left: 100px"><span >
 											<div class="itemName" id="bagProName">
 												<h3>
-													<b><span style="margin-top: -80px; margin-left: 100px">{{details.productName}}</span></b>
+													<b><span style="margin-top: -60px; margin-left: 120px">{{details.productName}}</span></b>
 												</h3>
-											</div> <span id='bagProcDesc' style="margin-top: -80px; margin-left: 100px; white-space: pre;">{{details.procDesc}}</span> <br>
-										</span>
+											</div> <span id='bagProcDesc' style="margin-left: 120px; white-space: pre;">{{details.procDesc}}</span> <br>
+										</span></div>
 									</div>
-									<div class="colDelivery">
+									<div class="colDelivery" style="margin-left: 200px;">
 										<span class="stockAvailable"> In Stock: Usually ships
 											within 15 business days. </span>
 									</div>
 									<div class="colQtyUpdate">{{details.stockDec}}</div>
-									<div class=colTotalPrice id='priceDesc'>
-										<b>Item total: INR: {{ details.ammount | number : 2 }}</b> <br>
-										<p>
+									<div  id='priceDesc'>
+										<b style="margin-left: 200px;">Item total: INR: {{ details.ammount | number : 2 }}</b> <br>
+										<p style="margin-left: 200px;">
 											<span style="color: red">Sale INR: {{
 												details.unitPrice | number : 2 }}</span>
 										</p>
