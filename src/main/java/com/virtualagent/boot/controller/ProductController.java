@@ -1,6 +1,11 @@
 package com.virtualagent.boot.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -104,15 +109,22 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/getProductBy/{category}/{subCategory}")
-	public ResponseEntity<?> getProductByCategory(@PathVariable("category") String category, @PathVariable("subCategory") String subCategory) {
+	public ResponseEntity<?> getProductByCategory(@PathVariable("category") String category, @PathVariable("subCategory") String subCategory, HttpServletRequest request) {
 		logger.debug("BEGIN:method getProductByCategory() in the " + getClass().getName());
 		List<Product> products = null;
+		Map<String, Object> productMap = new HashMap<>();
 		try {
-
+			HttpSession session = request.getSession();
+			if(request.getRemoteUser() != null && request.getRemoteUser() != ""){
+				productMap.put("userName", request.getRemoteUser());
+			}else{
+				productMap.put("userName", "");
+			}
 			products = productService.getProductByCategory(category, subCategory);
-
+			productMap.put("productList", products);
 			if (products != null && products.size() != 0) {
-				return new ResponseEntity<>(products, HttpStatus.OK);
+				//return new ResponseEntity<>(products, HttpStatus.OK);
+				return new ResponseEntity<>(productMap, HttpStatus.OK);
 
 			} else {
 				return new ResponseEntity<>("no product's found with your search", HttpStatus.NO_CONTENT);

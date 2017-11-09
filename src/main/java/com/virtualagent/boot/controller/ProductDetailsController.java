@@ -1,6 +1,11 @@
 package com.virtualagent.boot.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,10 +30,20 @@ public class ProductDetailsController {
 	 Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json", consumes = "application/json", value ="/productDetails")
-    public List<ProductDetails> showProductDetails(@RequestBody ShoppingCartDTO shoppingCartDTO,@RequestHeader HttpHeaders headers) {
+    public Map<String, Object> showProductDetails(@RequestBody ShoppingCartDTO shoppingCartDTO,@RequestHeader HttpHeaders headers, HttpServletRequest request) {
 		logger.info("Start of showProductDetails() method in controller");
 		logger.debug("User click product Id "+shoppingCartDTO.getProductId());
-		return shoppingCartService.getPoductDetails(shoppingCartDTO.getProductId());
+		
+		List<ProductDetails> productDetailsList = shoppingCartService.getPoductDetails(shoppingCartDTO.getProductId());
+		Map<String, Object> productMap = new HashMap<>();
+		HttpSession session = request.getSession();
+		if(request.getRemoteUser() != null && request.getRemoteUser() != ""){
+			productMap.put("userName", request.getRemoteUser());
+		}else{
+			productMap.put("userName", "");
+		}
+		productMap.put("productDetailsList", productDetailsList);
+		return productMap;
     }
 	
 	

@@ -20,11 +20,14 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by sahan on 4/9/2016.
@@ -136,12 +139,14 @@ public class ShoppingCartService {
     
     public String showMyBag(Long productId, HttpServletRequest request) {
     	System.out.println("In shoppingCartService...showMyBag() method...");
+    	String responseData = "";
     	if(request.getSession(false) != null){
     		System.out.println("Session id....."+request.getSession(false).getId());
     		if(request.getSession(false).getAttribute("userDetails") != null){
     			User user = (User) request.getSession(false).getAttribute("userDetails");
     			System.out.println("User detaisl..."+user);
     		}
+    		
     	}
     	Cookie cookie = shoppingCartUtil.getShoppingCartCookie(request, "shoppingCart");
     	Long userId;
@@ -156,14 +161,20 @@ public class ShoppingCartService {
     	System.out.println("show bag user id....."+userId);
     	List<Object[]> bagDataList = shoppingCartRepository.showMyBag(userId, productId);
     	Object[] bagData = bagDataList.get(0);
-    	
-    	String str = "{\"productDesc\" : \""+bagData[0]+"\", \"productAmount\" : \""+bagData[1]+"\", \"imageUrl\" : \""+bagData[2]+"\",\"productCount\" : \""+bagData[3]+"\", \"totalProductCount\" : \""+bagData[4]+"\", \"totalAmount\" : \""+bagData[5]+"\", \"userId\" : \""+userId+"\"}";
-    	return str;
+    	if(request.getSession(false) != null){
+    		System.out.println("Session is existed.....");
+    		responseData = "{\"productDesc\" : \""+bagData[0]+"\", \"productAmount\" : \""+bagData[1]+"\", \"imageUrl\" : \""+bagData[2]+"\",\"productCount\" : \""+bagData[3]+"\", \"totalProductCount\" : \""+bagData[4]+"\", \"totalAmount\" : \""+bagData[5]+"\", \"userId\" : \""+userId+"\", \"userName\" : \""+request.getRemoteUser()+"\"}";
+    	}else{
+    		System.out.println("Session not is existed.....");
+    		responseData = "{\"productDesc\" : \""+bagData[0]+"\", \"productAmount\" : \""+bagData[1]+"\", \"imageUrl\" : \""+bagData[2]+"\",\"productCount\" : \""+bagData[3]+"\", \"totalProductCount\" : \""+bagData[4]+"\", \"totalAmount\" : \""+bagData[5]+"\", \"userId\" : \""+userId+"\", \"userName\" : \"\"}";
+    	}
+    	return responseData;
     }
     
-    public List<ProductDetails> checkOutBagDetailsService(Long UserId) {
+    public Map<String, Object> checkOutBagDetailsService(Long UserId, HttpServletRequest request) {
     	List<ProductDetails> proHistory = new ArrayList<ProductDetails>();
     	List<Object[]> cartListObj = shoppingCartRepository.getCartDetails(UserId);
+    	Map<String, Object> productMap = new HashMap<>();
     	for(int i=0; i<cartListObj.size();i++) {
     		Object[] eCartObj = cartListObj.get(i);
     		BigInteger proId = (BigInteger)eCartObj[0];
@@ -181,7 +192,15 @@ public class ShoppingCartService {
     		String productDetails = "{\"proId\":\""+proDet[0]+"\",\"name\":\""+proDet[1]+"\",\"desc\":\""+proDet[2]+"\",\"unit_price\":\""+proDet[3]+"\",\"imageUrl\":\""+proDet[4]+"\",\"amount\":\""+eCartObj[1]+"\",\"stock\":\""+eCartObj[2]+"\"}";
     		proHistory.add(pdObj);
     	}
-    	return proHistory;
+    	
+    	HttpSession session = request.getSession();
+		if(request.getRemoteUser() != null && request.getRemoteUser() != ""){
+			productMap.put("userName", request.getRemoteUser());
+		}else{
+			productMap.put("userName", "");
+		}
+		productMap.put("productList", proHistory);
+    	return productMap;
     }
     
     public List<ProductDetails> summaryBagDetailsService(Long userId) {

@@ -9,6 +9,7 @@ import com.virtualagent.boot.pojo.ProductDetails;
 import com.virtualagent.boot.service.ShoppingCartService;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -60,8 +61,8 @@ public class ShoppingCartController {
     
     
     @RequestMapping(method = RequestMethod.GET, value = "/checkOutBagDetailsController/{productId}/{userId}")
-    public List<ProductDetails> checkOutBagDetailsController(@PathVariable("userId") Long productId, @PathVariable("productId") Long userId) {
-    	return shoppingCartService.checkOutBagDetailsService(userId);
+    public Map<String, Object> checkOutBagDetailsController(@PathVariable("userId") Long productId, @PathVariable("productId") Long userId, HttpServletRequest request) {
+    	return shoppingCartService.checkOutBagDetailsService(userId, request);
     }
     
     @RequestMapping(method = RequestMethod.GET, value = "/summaryBagDetailsController/{productId}/{userId}")

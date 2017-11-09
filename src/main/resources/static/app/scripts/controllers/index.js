@@ -37,18 +37,22 @@ proApp.controller('indexMainCtrl', function($scope, $http, $window) {
           	        }
                 }).then(function mySuccess(loginSuccessResponse) {
                 	$scope.loginPayload = loginSuccessResponse.data;
+                	/*****Set Loggedin User name*****/
                 	if(loginSuccessResponse.data.userName != "" && loginSuccessResponse.data.userName != "null" && loginSuccessResponse.data.userName != null){
                 		
-                		var htmlData = '<table style="width: 100%;margin-left: 50px;">';
+                		var htmlData = '<table style="width: 100%;">';
                 		htmlData += '<tr>';
-                		htmlData += '<th> Hi '+loginSuccessResponse.data.userName+'';
-                		htmlData += '<th><a href="/shoppingcart/logout"> logout</a>';
+                		htmlData += '<th> Hi '+loginSuccessResponse.data.userName+'</th>';
+                		//htmlData += '<th><a href="/shoppingcart/logout"> logout</a></th>';
+                		htmlData += '<th><div class="dropdown"><img src="app/images/drop-down.png" width="25" height="25">';
+                		htmlData += '<div class="dropdown-loginMenu"><a href="#">Acount</a> <a href="#">Order</a> <a href="/shoppingcart/logout">logout</a></div></div></th>';
                 		htmlData += '</tr></table>';
 //                		var htmlData = '<label>Hi '+loginSuccessResponse.data.userName+'</label>';
 //                		htmlData += '<a href="/shoppingcart/logout"> logout</a>';
                 		document.getElementById("loggedinUserDetails").innerHTML = htmlData;
                 		document.getElementById("signinSignupId").style.display = "none";
                 	}
+                	/*****End Set Loggedin User name*****/
                   }, function myError(response) {
                 });
             }, function myError(response) {

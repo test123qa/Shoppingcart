@@ -19,7 +19,7 @@ import java.util.List;
 public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long> {
     List<ShoppingCart> findByStatus(String status);
     
-    @Query(value = "SELECT p.description, sc.amount, p.imageUrl, sc.stock, (select sum(stock) from shopping_cart shop where shop.user_id=:userId and shop.status='ACTIVE') as totalCount, (select sum(amount) from shopping_cart shop where shop.user_id=:userId and shop.status='ACTIVE') as totalAmount FROM shopping_cart sc, shopping_user u, product p where sc.product_id=p.id and sc.user_id=u.id and sc.user_id=:userId and sc.product_id=:productId and sc.status='ACTIVE'" , nativeQuery = true)
+    @Query(value = "SELECT p.description, sc.amount, p.image_url, sc.stock, (select sum(stock) from shopping_cart shop where shop.user_id=:userId and shop.status='ACTIVE') as totalCount, (select sum(amount) from shopping_cart shop where shop.user_id=:userId and shop.status='ACTIVE') as totalAmount FROM shopping_cart sc, shopping_user u, product p where sc.product_id=p.id and sc.user_id=u.id and sc.user_id=:userId and sc.product_id=:productId and sc.status='ACTIVE'" , nativeQuery = true)
 	public List<Object[]> showMyBag(@Param("userId") Long userId, @Param("productId") Long productId);
 	
 
@@ -29,7 +29,7 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long
 	@Query(value = "SELECT sc.product_id, sum(sc.amount) as amount, sum(sc.stock) as stock  FROM shopping_cart sc  where sc.user_id =:userId and sc.status = 'PURCHASED' group by sc.product_id" , nativeQuery = true)
 	public List<Object[]> getPurchasedDetails(@Param("userId") Long userId);
 	
-	@Query(value = "select product.id, product.name, product.description, product.unit_price, product.imageUrl from product product where product.id=:proId" , nativeQuery = true)
+	@Query(value = "select product.id, product.name, product.description, product.unit_price, product.image_url from product product where product.id=:proId" , nativeQuery = true)
 	public List<Object[]> getProductDetails(@Param("proId") BigInteger proId);
 
 	@Modifying

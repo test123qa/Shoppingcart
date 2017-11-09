@@ -10,17 +10,17 @@
     display: inline-block;
     float: left;
     width: 800px;
-    margin-left: 50px;
+    margin-left: 170px;
     margin-right: 50px;
-    margin-top: 41px;
+    margin-top: 20px;
 }
 
 .bagHeadingCSS {
     width: 100%;
-    margin-top: 2px;
+    /* margin-top: 2px; */
     margin-left: 50px;
     margin-right: 50px;
-    margin-bottom: 18px;
+    /* margin-bottom: 18px; */
 }
 
 .bagHeadingMsgCSS {
@@ -31,6 +31,8 @@
 
 .dividerCSS {
     padding: 20px 0 50px 50px;
+    margin-left: -6%;
+    margin-bottom: -30px;
 }
 
 .productSummaryViewCSS {
@@ -219,10 +221,113 @@ div.ftButtons a {
 	margin-top: -80px;
 	
 }
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+
+/* ****Login menu *******/
+.dropdown-loginMenu {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 90px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-loginMenu a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-loginMenu a:hover {
+	background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-loginMenu {
+	display: block;
+}
+
+/* ****End Login menu *******/
 </style>
 </head>
 <body ng-app="userBagApp">
 
+<!-- *********Header part******************** -->
+
+<div class="container">
+
+				<a href="/shoppingcart"> <img src="../images/stopandshop.jpg"
+					style="width: 200px; height: 100px;" class="img-rounded"
+					alt="Cinque Terre"></img>
+				</a>
+			</div>
+			<br />
+
+			<div class="hai">
+			<div id="loggedinUserDetails" style="margin-left: 65px;"></div>
+			</div>
+
+			<div>
+				<div class="dropdown">
+					<button class="dropbtn" style="margin-left: 250px">Women</button>
+					<div class="dropdown-content" style="margin-left: 250px">
+						<a href="#">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
+							href="">Coats</a>
+					</div>
+				</div>
+				<div class="dropdown">
+					<button class="dropbtn" style="margin-left: 250px">Men</button>
+					<div class="dropdown-content" style="margin-left: 250px">
+						<a href="/shoppingcart/app/views/men-activeWare.html">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
+							href="">Coats</a>
+					</div>
+				</div>
+				<div class="dropdown">
+					<button class="dropbtn" style="margin-left: 150px">Kids</button>
+					<div class="dropdown-content" style="margin-left: 150px">
+						<a href="#">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
+							href="">Coats</a>
+					</div>
+				</div>
+				<div class="dropdown">
+					<button class="dropbtn" style="margin-left: 200px">Home Appliances</button>
+					<div class="dropdown-content" style="margin-left: 200px">
+						<a href="#">Kitchen</a> <a href="#">Furniture</a> <a href="#">Electronics</a>
+					</div>
+				</div>
+
+			</div>
+			
+<!-- *********End Header part******************** -->
+			
 <div id="bagSummaryView" class="bagSummaryViewCSS"  ng-controller="userBagCtrl">
 <input type="hidden" id="userId" value="{{ bagPayload.userId }}">
 	<div id="bagHeading" class="bagHeadingCSS">

@@ -39,6 +39,32 @@
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 }
+/* ****Login menu *******/
+.dropdown-loginMenu {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 90px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-loginMenu a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-loginMenu a:hover {
+	background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-loginMenu {
+	display: block;
+}
+
+/* ****End Login menu *******/
 
 .dropdown-content a {
 	color: black;
@@ -128,6 +154,7 @@ label, input { display:block;}
 
 		<div class="login card card-container">
 
+<!-- *********Header part******************** -->
 			<div class="container">
 
 				<a href="/shoppingcart"> <img src="app/images/stopandshop.jpg"
@@ -138,12 +165,13 @@ label, input { display:block;}
 			<br />
 
 			<div class="hai">
-			<div id="loggedinUserDetails"></div>
+			<div id="loggedinUserDetails" style="margin-left: 65px;"></div>
 			<div id="signinSignupId">
 				<table style="width: 100%;margin-left: 50px;">
 					<tr>
-						<th><a href="/shoppingcart/login.html">Sign In</a>
-						<th><a href="/shoppingcart/app/views/createUser.html" style="margin-left: -10px;">Sign Up</a>
+						<th><a href="/shoppingcart/login.html">Sign In</a></th>
+						<th><a href="/shoppingcart/app/views/createUser.html" style="margin-left: -10px;">Sign Up</a></th>
+						
 					</tr>
 				</table>
 			</div>
@@ -180,6 +208,8 @@ label, input { display:block;}
 				</div>
 
 			</div>
+			
+<!-- *********End Header part******************** -->
 
 			<div class="w3-content w3-section">
 				<img class="mySlides" src="app/images/home-1.jpg"

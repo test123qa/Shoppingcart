@@ -13,6 +13,61 @@
 	margin-left: 150px;
 }
 
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+/* ****Login menu *******/
+.dropdown-loginMenu {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 90px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-loginMenu a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-loginMenu a:hover {
+	background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-loginMenu {
+	display: block;
+}
+
+/* ****End Login menu *******/
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+
 .img {
 	margin-left: 130px;
 	/* margin-top: 80px; */
@@ -136,6 +191,14 @@ component-style…ys-base.scss: 2 .productThumbnail .bottomOverlayWrapper
 .bottomOverlayGrey {
 	width: 250px !important;
 }
+
+.loginCSS {
+    float: right;
+    margin-right: 80px !important;
+    margin-top: 8px !important;
+    font-family: initial;
+    font-size: medium;
+}
 </style>
 <title>Men Active Ware</title>
 <link rel="stylesheet"
@@ -149,7 +212,9 @@ component-style…ys-base.scss: 2 .productThumbnail .bottomOverlayWrapper
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<div ng-app="menActiveWare" ng-controller="menActiveWareCntrl">
-
+	
+<!-- *********Header part******************** -->
+<div id="loggedinUserDetails" class="loginCSS"></div>
 		<div class="container">
 
 			<a href="/shoppingcart"> <img src="../images/stopandshop.jpg"
@@ -189,6 +254,9 @@ component-style…ys-base.scss: 2 .productThumbnail .bottomOverlayWrapper
 			</div>
 
 		</div>
+		
+<!-- *********End Header part******************** -->
+
 		<div class="img">
 			<img src="../images/Men-activeware-1.jpg">
 		</div><br/><br/>
