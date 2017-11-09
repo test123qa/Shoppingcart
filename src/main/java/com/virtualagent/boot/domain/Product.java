@@ -54,6 +54,7 @@ public class Product implements Serializable {
 		this.category = category;
 	}
 
+	@Column(name = "image_url")
 	private String imageUrl;
 
 	public Product() {
