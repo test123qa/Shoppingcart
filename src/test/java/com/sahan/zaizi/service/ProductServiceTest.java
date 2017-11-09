@@ -22,9 +22,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.sahan.zaizi.Exception.ShoppingCartException;
-import com.sahan.zaizi.controller.ProductController;
-import com.sahan.zaizi.domain.Product;
+import com.virtualagent.boot.Exception.ShoppingCartException;
+import com.virtualagent.boot.controller.ProductController;
+import com.virtualagent.boot.domain.Product;
+import com.virtualagent.boot.service.ProductService;
 
 /**
  * @author nisum
