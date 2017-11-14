@@ -66,8 +66,8 @@ public class ShoppingCartController {
     }
     
     @RequestMapping(method = RequestMethod.GET, value = "/summaryBagDetailsController/{productId}/{userId}")
-    public List<ProductDetails> summaryBagDetailsController(@PathVariable("userId") Long productId, @PathVariable("productId") Long userId) {
-    	return shoppingCartService.summaryBagDetailsService(userId);
+    public Map<String, Object> summaryBagDetailsController(@PathVariable("userId") Long productId, @PathVariable("productId") Long userId, HttpServletRequest request) {
+    	return shoppingCartService.summaryBagDetailsService(userId, request);
     }
     
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteProductById/{proId}")

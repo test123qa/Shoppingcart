@@ -23,8 +23,20 @@ app.controller('checkOutCntrl', function($http, $scope, $window){
 				'Accept' : 'application/json'
 			}
 		  }).then(function mySuccess(response) {
-			  console.log(JSON.stringify(response.data))
-		      $scope.history1 = response.data;
+			  console.log(response.data);
+			  /*****Set Loggedin User name*****/
+	      		if(response.data.userName != "" && response.data.userName != "null" && response.data.userName != null){
+	          		
+	          		var htmlData = '<table style="width: 100%;">';
+	          		htmlData += '<tr>';
+	          		htmlData += '<th> Hi '+response.data.userName+'</th>';
+	          		htmlData += '<th><div class="dropdown"><img src="../images/drop-down.png" width="25" height="25">';
+	          		htmlData += '<div class="dropdown-loginMenu"><a href="#">Acount</a> <a href="#">Order</a> <a href="/shoppingcart/logout">logout</a></div></div></th>';
+	          		htmlData += '</tr></table>';
+	          		document.getElementById("loggedinUserDetails").innerHTML = htmlData;
+	          	}
+	      		/*****End Set Loggedin User name*****/
+		      $scope.history1 = response.data.productList;
 		    }, function myError(response) {
 		      $scope.myWelcome = response.statusText;
 		  });

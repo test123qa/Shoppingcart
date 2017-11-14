@@ -20,5 +20,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 	@Query("select id, name, description, quantity, unitPrice, imageUrl from Product where category = ?1 and subCategory = ?2")
 	public List<Product> findByCategory(String category, String subCategory);
+	
+	public List<Product> findAll();
 
 }

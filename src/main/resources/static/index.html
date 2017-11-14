@@ -112,6 +112,33 @@ label, input { display:block;}
     .dialogRoundedCorner.ui-dialog-titlebar .ui-corner-all {
     	border-radius: 10px 10px 0 0;
     }
+    
+    /* ****Login menu *******/
+.dropdown-loginMenu {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 90px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-loginMenu a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-loginMenu a:hover {
+	background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-loginMenu {
+	display: block;
+}
+
+/* ****End Login menu *******/
 </style>
 </head>
 <body ng-app="indexApp">

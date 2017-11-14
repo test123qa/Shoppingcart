@@ -203,10 +203,11 @@ public class ShoppingCartService {
     	return productMap;
     }
     
-    public List<ProductDetails> summaryBagDetailsService(Long userId) {
+    public Map<String, Object> summaryBagDetailsService(Long userId, HttpServletRequest request) {
     	List<ProductDetails> proHistory = new ArrayList<ProductDetails>();
     	updateProductStatus(userId);
     	List<Object[]> cartListObj = shoppingCartRepository.getPurchasedDetails(userId);
+    	Map<String, Object> productMap = new HashMap<>();
     	for(int i=0; i<cartListObj.size();i++) {
     		Object[] eCartObj = cartListObj.get(i);
     		BigInteger proId = (BigInteger)eCartObj[0];
@@ -224,7 +225,14 @@ public class ShoppingCartService {
     		String productDetails = "{\"proId\":\""+proDet[0]+"\",\"name\":\""+proDet[1]+"\",\"desc\":\""+proDet[2]+"\",\"unit_price\":\""+proDet[3]+"\",\"imageUrl\":\""+proDet[4]+"\",\"amount\":\""+eCartObj[1]+"\",\"stock\":\""+eCartObj[2]+"\"}";
     		proHistory.add(pdObj);
     	}
-    	return proHistory;
+    	HttpSession session = request.getSession();
+		if(request.getRemoteUser() != null && request.getRemoteUser() != ""){
+			productMap.put("userName", request.getRemoteUser());
+		}else{
+			productMap.put("userName", "");
+		}
+		productMap.put("productList", proHistory);
+    	return productMap;
     } 
     
     public void deleteProductFromCart(Long product_id) {

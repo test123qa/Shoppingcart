@@ -49,7 +49,14 @@ public class ProductService {
 	}
 
 	public void saveInitialBatch() {
-		productRepository.save(products);
+		List<Product> productList = productRepository.findAll();
+		if(productList == null || productList.size() == 0){
+			System.out.println("******First time product setup********");
+			productRepository.save(products);
+		}else{
+			System.out.println("*******Product setup has already done*********");
+		}
+		
 
 	}
 
