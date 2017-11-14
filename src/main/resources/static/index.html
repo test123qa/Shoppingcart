@@ -12,10 +12,11 @@
 .dropbtn {
 	background-color: #4CAF50;
 	color: white;
+	border-radius:10px;
+	padding: 10px 18px;
 	font-size: 16px;
 	border: none;
 	cursor: pointer;
-	margin-left: 150px;
 }
 
 .dropimg {
@@ -39,32 +40,6 @@
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 }
-/* ****Login menu *******/
-.dropdown-loginMenu {
-	display: none;
-	position: absolute;
-	background-color: #f9f9f9;
-	min-width: 90px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-.dropdown-loginMenu a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-.dropdown-loginMenu a:hover {
-	background-color: #f1f1f1
-}
-
-.dropdown:hover .dropdown-loginMenu {
-	display: block;
-}
-
-/* ****End Login menu *******/
 
 .dropdown-content a {
 	color: black;
@@ -93,6 +68,7 @@
 
 .mySlides {
 	display: none;
+	margin-left: 55px;
 }
 
 .sign {
@@ -154,10 +130,9 @@ label, input { display:block;}
 
 		<div class="login card card-container">
 
-<!-- *********Header part******************** -->
 			<div class="container">
 
-				<a href="/shoppingcart"> <img src="app/images/stopandshop.jpg"
+				<a href="/shoppingcart"> <img src="app/images/online-shopping.jpg"
 					style="width: 200px; height: 100px;" class="img-rounded"
 					alt="Cinque Terre"></img>
 				</a>
@@ -165,13 +140,12 @@ label, input { display:block;}
 			<br />
 
 			<div class="hai">
-			<div id="loggedinUserDetails" style="margin-left: 65px;"></div>
+			<div id="loggedinUserDetails"></div>
 			<div id="signinSignupId">
 				<table style="width: 100%;margin-left: 50px;">
 					<tr>
-						<th><a href="/shoppingcart/login.html">Sign In</a></th>
-						<th><a href="/shoppingcart/app/views/createUser.html" style="margin-left: -10px;">Sign Up</a></th>
-						
+						<th><a href="/shoppingcart/login.html">Sign In</a>
+						<th><a href="/shoppingcart/app/views/createUser.html" style="margin-left: -10px;">Sign Up</a>
 					</tr>
 				</table>
 			</div>
@@ -180,57 +154,104 @@ label, input { display:block;}
 
 			<div>
 				<div class="dropdown">
-					<button class="dropbtn" style="margin-left: 250px">Women</button>
-					<div class="dropdown-content" style="margin-left: 250px">
+					<button class="dropbtn" style="margin-left: 55px">Women</button>
+					<div class="dropdown-content" style="margin-left: 50px">
 						<a href="#">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
 							href="">Coats</a>
 					</div>
 				</div>
 				<div class="dropdown">
-					<button class="dropbtn" style="margin-left: 250px">Men</button>
-					<div class="dropdown-content" style="margin-left: 250px">
+					<button class="dropbtn" style="margin-left: 0px">Men</button>
+					<div class="dropdown-content" style="margin-left: 6px">
 						<a href="/shoppingcart/app/views/men-activeWare.html">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
 							href="">Coats</a>
 					</div>
 				</div>
 				<div class="dropdown">
-					<button class="dropbtn" style="margin-left: 150px">Kids</button>
-					<div class="dropdown-content" style="margin-left: 150px">
+					<button class="dropbtn" style="margin-left: 0px">Kids</button>
+					<div class="dropdown-content" style="margin-left: 6px">
 						<a href="#">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
 							href="">Coats</a>
 					</div>
 				</div>
 				<div class="dropdown">
-					<button class="dropbtn" style="margin-left: 200px">Home Appliances</button>
-					<div class="dropdown-content" style="margin-left: 200px">
-						<a href="#">Kitchen</a> <a href="#">Furniture</a> <a href="#">Electronics</a>
+					<button class="dropbtn" style="margin-left: 0px">Maternity</button>
+					<div class="dropdown-content" style="margin-left: 6px">
+						<a href="#">Sweaters</a> <a href="#">Nursing</a> <a href="#">Socks & Tights</a>
+					</div>
+				</div>	
+				<div class="dropdown">
+					<button class="dropbtn" style="margin-left: 0px">Toddler</button>
+					<div class="dropdown-content" style="margin-left: 6px">
+						<a href="#">Sweaters</a> <a href="#">Shirts</a> <a href="#">Shoes</a>
 					</div>
 				</div>
+				<div class="dropdown">
+					<button class="dropbtn" style="margin-left: 0px">Baby</button>
+					<div class="dropdown-content" style="margin-left: 6px">
+						<a href="#">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
+							href="">Coats</a>
+					</div>
+				</div>
+				
+				<div class="dropdown">
+					<button class="dropbtn" style="margin-left: 0px">Boys</button>
+					<div class="dropdown-content" style="margin-left: 6px">
+						<a href="#">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
+							href="">Coats</a>
+					</div>
+				</div>
+				
+				
+				<div class="dropdown">
+					<button class="dropbtn" style="margin-left: 0px">Girls</button>
+					<div class="dropdown-content" style="margin-left: 6px">
+						<a href="#">Active Ware</a> <a href="#">Shoes</a> <a href="#">Jeans</a><a
+							href="">Coats</a>
+					</div>
+				</div>
+				<div class="dropdown">
+					<button class="dropbtn" style="margin-left: 0px">Accessories</button>
+					<div class="dropdown-content" style="margin-left: 6px">
+						<a href="#">Belts</a> <a href="#">Watches</a> <a href="#">Ties</a>
+					</div>
+				</div>
+				<div class="dropdown">
+					<button class="dropbtn" style="margin-left: 0px">Electronics</button>
+					<div class="dropdown-content" style="margin-left: 6px">
+						<a href="#">Mobiles</a> <a href="#">Televisions</a>
+					</div>
+				</div>
+				<div class="dropdown">
+					<button class="dropbtn" style="margin-left: 0px">Home Appliances</button>
+					<div class="dropdown-content" style="margin-left: 6px">
+						<a href="#">Kitchen</a> <a href="#">Furniture</a>
+					</div>
+				</div>
+				
 
 			</div>
-			
-<!-- *********End Header part******************** -->
 
 			<div class="w3-content w3-section">
-				<img class="mySlides" src="app/images/home-1.jpg"
-					style="width: 100%; height: 450px"> <img class="mySlides"
-					src="app/images/kids-1.jpg" style="width: 100%; height: 450px">
+				<img class="mySlides" src="app/images/home-1.jpg" algin="center"
+					style="width: 87%; height: 410px"> <img class="mySlides"
+					src="app/images/kids-1.jpg" style="width: 87%; height: 410px">
 				<img class="mySlides" src="app/images/men-1.jpg"
-					style="width: 100%; height: 450px"> <img class="mySlides"
-					src="app/images/women-3.gif" style="width: 100%; height: 450px">
+					style="width: 87%; height: 410px"> <img class="mySlides"
+					src="app/images/women-3.gif" style="width: 87%; height: 410px">
 
 				<img class="mySlides" src="app/images/home-2.jpg"
-					style="width: 100%; height: 450px"> <img class="mySlides"
-					src="app/images/kids-2.jpg" style="width: 100%; height: 450px">
+					style="width: 87%; height: 410px" style="padding:5px;"> <img class="mySlides"
+					src="app/images/kids-2.jpg" style="width: 87%; height: 410px">
 				<img class="mySlides" src="app/images/men-2.jpg"
-					style="width: 100%; height: 450px"> <img class="mySlides"
-					src="app/images/women-2.jpg" style="width: 100%; height: 450px">
+					style="width: 87%; height: 410px"> <img class="mySlides"
+					src="app/images/women-2.jpg" style="width: 87%; height: 410px">
 
 				<img class="mySlides" src="app/images/home-3.jpg"
-					style="width: 100%; height: 450px"> <img class="mySlides"
-					src="app/images/kids-3.jpg" style="width: 100%; height: 450px">
+					style="width: 87%; height: 410px"> <img class="mySlides"
+					src="app/images/kids-3.jpg" style="width: 87%; height: 410px">
 				<img class="mySlides" src="app/images/men-3.jpg"
-					style="width: 100%; height: 450px">
+					style="width: 87%; height: 410px">
 
 			</div>
 
@@ -262,20 +283,3 @@ label, input { display:block;}
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
