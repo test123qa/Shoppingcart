@@ -1,0 +1,78 @@
+<html>
+<body>
+<div id="dialog-form" title="Chat With Us" >
+	<form id="myForm" autocomplete="off">
+	<!-- <img src="app/images/chat support.png"
+					style="width:330px; height: 100px" class="img-rounded"
+					alt="Cinque Terre"></img> -->
+		<div id="chatConversationWindow" >
+			<a href="/shoppingcart/app/views/men-activeWare.html"> <img src="app/images/1.jpeg"
+					style="width: 200px; height: 100px;" class="img-rounded"
+					alt="Cinque Terre"></img>
+				</a><br/>
+				<a href="/shoppingcart/app/views/men-activeWare.html"><img src="app/images/2.jpeg"
+					style="width: 200px; height: 100px;" class="img-rounded"
+					alt="Cinque Terre"></img>
+				</a>
+				<ul id="chatConversation"></ul>
+				<input type="text" name="chat" id="chat"  class="text ui-widget-content ui-corner-all" style="bottom:0;right:0;margin-top: 230px;" />
+				
+		</div>
+		</form>  
+</div>
+<script>
+	$(document).ready(function() {
+	
+		var dialog, chatConversation;
+		var chatInput = $("#chat");
+		var chatDialog = $("#dialog-form");
+		var counter = 0;
+		window.addEventListener("beforeunload", function (event) {
+			counter = 0;
+			console.log("counter reset")
+		});
+		chatDialog.dialog({
+			autoOpen: false,
+			 position: {
+                 my: "right bottom",
+                 at: "right bottom",
+                 of: window
+             },
+			width: 350,
+			height:350,
+			modal: false,
+			draggable: false,
+			resizable: false,
+			dialogClass: "dialogRoundedCorner",
+			close: function( event, ui ) {
+				counter++;
+				if(counter < 3){
+					setTimeout(function(){
+						chatDialog.dialog("open");
+					},15000)
+				}
+				
+			}
+		});
+		chatDialog.dialog("open");
+		
+		
+		$("#btnChatWindow").hide();
+		
+		document.forms.myForm.onsubmit = function(e) {			
+            e = e || event;
+            e.preventDefault();
+			if($("#chat").val() != "") {
+				$("#chatConversation").append("<li class='chatMessage'>"+ chatInput.val() +"</li>");
+				$("#chatConversationWindow").scrollTop(9999999);
+				$("#chat").val("");
+			};
+        };
+		chatDialog.on("dialogclose", function() {
+			$("#btnChatWindow").show();
+		});
+	});
+	 
+</script>
+</body>
+</html>
