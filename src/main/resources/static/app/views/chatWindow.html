@@ -1,18 +1,28 @@
+<html>
+<body>
 <div id="dialog-form" title="Chat With Us" style="background: white;">
 	<form id="myForm" autocomplete="off">
 		<div id="chatConversationWindow">
-			<ul id="chatConversation"></ul>
-		</div>
-		<div>
+				<a href="../views/men-activeWare.html"> <img src="../images/1.jpeg"
+					style="width: 200px; height: 100px;" class="img-rounded"
+					alt="Cinque Terre"></img>
+				</a><br/>
+				<ul id="chatConversation"></ul>
 			<input type="text" name="chat" id="chat"  class="text ui-widget-content ui-corner-all" style="bottom:0;right:0;margin-top: 230px;" />
 		</div>
 		</form>  
 </div>
 <script>
 	$(document).ready(function() {
+	
 		var dialog, chatConversation;
 		var chatInput = $("#chat");
 		var chatDialog = $("#dialog-form");
+		var counter = 0;
+		window.addEventListener("beforeunload", function (event) {
+			counter = 0;
+			
+		});
 		chatDialog.dialog({
 			autoOpen: false,
 			 position: {
@@ -25,9 +35,19 @@
 			modal: false,
 			draggable: false,
 			resizable: false,
-			dialogClass: "dialogRoundedCorner"
+			dialogClass: "dialogRoundedCorner",
+			close: function( event, ui ) {
+				counter++;
+				if(counter < 3){
+					setTimeout(function(){
+						chatDialog.dialog("open");
+					},15000)
+				}
+			}
 		});
 		chatDialog.dialog("open");
+		
+		
 		$("#btnChatWindow").hide();
 		
 		document.forms.myForm.onsubmit = function(e) {			
@@ -45,3 +65,5 @@
 	});
 	 
 </script>
+</body>
+</html>
