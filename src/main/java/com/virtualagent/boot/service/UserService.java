@@ -51,5 +51,10 @@ public class UserService {
     	System.out.println("In UserService....saveUserDetails() method....");
     	return userRepository.findByUserName(userName);
     }
+    
+    public User findByTokenId(String tokenId){
+    	System.out.println("In UserService....saveUserDetails() method....");
+    	return userRepository.findByCookieTokenId(tokenId);
+    }
 
 }

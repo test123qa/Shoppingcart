@@ -11,6 +11,7 @@ import java.net.HttpCookie;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -44,16 +45,16 @@ public class UserProfileController {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private ShoppingCartUtil shoppingCartUtil;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private UserServiceAuth userServiceAuth;
-	
+
 	@Autowired
 	private SecurityService securityService;
 
@@ -63,35 +64,61 @@ public class UserProfileController {
 		userServiceAuth.save(user);
 		//userRepository.save(user);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/{ip}/generateUserId")
 	public String generateUserId(HttpServletRequest request, HttpServletResponse response, @PathVariable("ip") String ip) {
 		System.out.println("In generateUserId()....To generate userId and write cookies for IP..."+ip);
 		String userName = "";
 		HttpSession session = request.getSession();
+
+		System.out.println(request.getRemoteUser());
+		System.out.println(securityService.findLoggedInUsername());
+		System.out.println("Session id....."+session.getId());
+		//Condition for user details if user logged in. Update valid userTokenID
 		if(request.getRemoteUser() != null && request.getRemoteUser() != ""){
 			userName = request.getRemoteUser();
 			User user = userService.findByUserName(userName);
 			session.setAttribute("userDetails", user);
-			Cookie ck=new Cookie("shoppingCart","guest,"+user.getId());
-			ck.setPath("/");
-			response.addCookie(ck);
+			//a random id is being set as cookie value for the user 
+			String uniqueID = user.getCookieTokenId();
+
+			if(uniqueID == null) {
+				uniqueID = UUID.randomUUID().toString();
+				user.setCookieTokenId(uniqueID);
+				userRepository.save(user);
+			}
+
+			Cookie ck1=new Cookie("userTokenID",uniqueID);
+			ck1.setPath("/");
+			response.addCookie(ck1);
+
 			System.out.println("cookies has been updated....");
 		}
-		System.out.println(request.getRemoteUser());
-		System.out.println(securityService.findLoggedInUsername());
-		System.out.println("Session id....."+session.getId());
-		Cookie cookie = shoppingCartUtil.getShoppingCartCookie(request, "shoppingCart");
-		String userId = ip.replace(".", "*");
-		if(cookie == null){
-			System.out.println(ip+"---ip---userid----"+userId);
-			User user = userService.saveUserDetails(ip, userId, request);
-			Cookie ck=new Cookie("shoppingCart","guest,"+user.getId());
-			ck.setPath("/");
-			response.addCookie(ck);
-			System.out.println("cookies has been written....");
-		}else{
-			System.out.println("Cookies has already written.");
+		//guest user
+		else {
+			Cookie cookieToken = shoppingCartUtil.getShoppingCartCookie(request, "guestTokenId");
+			String userId = ip.replace(".", "*");
+
+			//If valid cookie token is available, retrieve same user info and save into cookies
+			if(cookieToken == null){
+				System.out.println(ip+"---ip---userid----"+userId);
+				User user = userService.saveUserDetails(ip, userId, request);
+
+				//a random id is being set as cookie value for the user 
+				String uniqueID = user.getCookieTokenId();
+				if(uniqueID == null) {
+					uniqueID = UUID.randomUUID().toString();
+					user.setCookieTokenId(uniqueID);
+					userRepository.save(user);
+				}	
+				cookieToken = new Cookie("guestTokenId",uniqueID);
+				cookieToken.setPath("/");
+				response.addCookie(cookieToken);
+			}
+			//Valid user present against the given cookie. No updates
+			else {
+				System.out.println("Cookies has already written.");				
+			}
 		}
 		
 		String loginDetails = "{\"userName\":\""+userName+"\"}";
@@ -106,7 +133,17 @@ public class UserProfileController {
 		if(request.getRemoteUser() != null && request.getRemoteUser() != ""){
 			userName = request.getRemoteUser();
 			User user = userService.findByUserName(userName);
-			Cookie ck=new Cookie("shoppingCart","guest,"+user.getId());
+
+			//a random id is being set as cookie value for the user 
+			String uniqueID = user.getCookieTokenId();
+
+			if(uniqueID == null) {
+				uniqueID = UUID.randomUUID().toString();
+				user.setCookieTokenId(uniqueID);
+				userRepository.save(user);
+			}
+
+			Cookie ck = new Cookie("userTokenID",uniqueID);
 			ck.setPath("/");
 			response.addCookie(ck);
 			System.out.println("cookies has been written....");

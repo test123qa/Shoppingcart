@@ -42,6 +42,7 @@ public class User implements Serializable {
 	private String userType;
 	private String geoLocation;
 	private String tempUserId;
+	private String cookieTokenId;
 	@OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
 	private Set<Role> roles;
@@ -172,12 +173,20 @@ public class User implements Serializable {
 		DOB = dOB;
 	}
 
+	public String getCookieTokenId() {
+		return cookieTokenId;
+	}
+
+	public void setCookieTokenId(String cookieTokenId) {
+		this.cookieTokenId = cookieTokenId;
+	}
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userName=" + userName + ", email=" + email + ", password=" + password
 				+ ", firstName=" + firstName + ", lastName=" + lastName + ", mobileNo=" + mobileNo + ", userType="
 				+ userType + ", geoLocation=" + geoLocation + ", tempUserId=" + tempUserId + ", roles=" + roles
-				+ ", DOB=" + DOB + "]";
+				+ ", DOB=" + DOB + ", cookieTokenId=" + cookieTokenId + "]";
 	}
 
 }

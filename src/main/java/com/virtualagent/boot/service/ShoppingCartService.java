@@ -57,11 +57,18 @@ public class ShoppingCartService {
         ShoppingCart shoppingCart = new ShoppingCart();
         Product product = productRepository.findOne(shoppingCartDTO.getProductId());
         shoppingCart.setProduct(product);
-        Cookie cookie = shoppingCartUtil.getShoppingCartCookie(request, "shoppingCart");
+        System.out.println(" Is user logged int :::: "+request.getRemoteUser());
+        Cookie cookie = null;
+		if(request.getRemoteUser() != null && request.getRemoteUser() != ""){
+			cookie = shoppingCartUtil.getShoppingCartCookie(request, "userTokenID");
+		}
+		else {
+			cookie = shoppingCartUtil.getShoppingCartCookie(request, "guestTokenId");
+		}
     	Long userId;
     	if(cookie != null){
     		String value = cookie.getValue();
-    		 userId = Long.parseLong(value.split(",")[1]);
+    		 userId = userRepository.findByCookieTokenId(value).getId();
     	}else{
     		System.out.println("Oops!...Cookie is not available...");
     		System.out.println("Setting default userId...."+1);
@@ -148,11 +155,20 @@ public class ShoppingCartService {
     		}
     		
     	}
-    	Cookie cookie = shoppingCartUtil.getShoppingCartCookie(request, "shoppingCart");
+    	System.out.println(" Is user logged into the site :::: "+request.getRemoteUser());
+        Cookie cookie = null;
+		if(request.getRemoteUser() != null && request.getRemoteUser() != ""){
+			cookie = shoppingCartUtil.getShoppingCartCookie(request, "userTokenID");
+		}
+		else {
+			cookie = shoppingCartUtil.getShoppingCartCookie(request, "guestTokenId");
+		}
+  
     	Long userId;
     	if(cookie != null){
     		String value = cookie.getValue();
-    		 userId = Long.parseLong(value.split(",")[1]);
+    		 //userId = Long.parseLong(value.split(",")[1]);
+    		userId = userRepository.findByCookieTokenId(value).getId();
     	}else{
     		System.out.println("Oops!...Cookie is not available...");
     		System.out.println("Setting default userId...."+1);
@@ -188,7 +204,7 @@ public class ShoppingCartService {
     		pdObj.setUnitPrice(((Double)proDet[3]));
     		pdObj.setAmmount(((Double)eCartObj[1]));
     		pdObj.setImageUrl((String)proDet[4]);
-    		pdObj.setStockDec((BigDecimal)eCartObj[2]);
+    		pdObj.setStockDec(new BigDecimal ( (BigInteger) eCartObj[2]));
     		String productDetails = "{\"proId\":\""+proDet[0]+"\",\"name\":\""+proDet[1]+"\",\"desc\":\""+proDet[2]+"\",\"unit_price\":\""+proDet[3]+"\",\"imageUrl\":\""+proDet[4]+"\",\"amount\":\""+eCartObj[1]+"\",\"stock\":\""+eCartObj[2]+"\"}";
     		proHistory.add(pdObj);
     	}
@@ -221,7 +237,7 @@ public class ShoppingCartService {
     		pdObj.setUnitPrice(((Double)proDet[3]));
     		pdObj.setAmmount(((Double)eCartObj[1]));
     		pdObj.setImageUrl((String)proDet[4]);
-    		pdObj.setStockDec((BigDecimal)eCartObj[2]);
+    		pdObj.setStockDec(new BigDecimal ( (BigInteger) eCartObj[2]));
     		String productDetails = "{\"proId\":\""+proDet[0]+"\",\"name\":\""+proDet[1]+"\",\"desc\":\""+proDet[2]+"\",\"unit_price\":\""+proDet[3]+"\",\"imageUrl\":\""+proDet[4]+"\",\"amount\":\""+eCartObj[1]+"\",\"stock\":\""+eCartObj[2]+"\"}";
     		proHistory.add(pdObj);
     	}
