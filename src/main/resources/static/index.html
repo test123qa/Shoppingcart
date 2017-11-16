@@ -69,6 +69,7 @@
 .mySlides {
 	display: none;
 	margin-left: 55px;
+	border-radius:15px;
 }
 
 .sign {
@@ -149,7 +150,16 @@ label, input { display:block;}
 					</tr>
 				</table>
 			</div>
-
+			<div class="ftButtons" align="right">
+			<a id="checkoutLink" href="javascript:void(0)" class="primary button expand" alt="Items in Cart" title="Items in Cart" onclick="fnViewBagCheckOut()">
+					<table style="width: 100%;margin-left: 40px;">
+					<tr>
+						<th align="right"><img src="app/images/AddToCart.png" style="width: 40px; height: 40px;" class="img-rounded" alt="View cart details"></img></th>
+						<th align="left"><div id="itemsInCart"><span style="color:red"> </span></div></th>
+					</tr>
+				</table>
+				</a>
+			</div>
 			</div>
 
 			<div>

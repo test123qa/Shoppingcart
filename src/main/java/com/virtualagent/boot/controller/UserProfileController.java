@@ -199,4 +199,29 @@ public class UserProfileController {
         return "welcome";
     }*/
 
+    
+	@RequestMapping(method = RequestMethod.GET, value = "/getUserId")
+	public String retrieveUserId(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("In retrieveUserId()....To generate userId ");
+
+		System.out.println(request.getRemoteUser());
+		System.out.println(securityService.findLoggedInUsername());
+		//Condition for user details if user logged in. Update valid userTokenID
+		if(request.getRemoteUser() != null && request.getRemoteUser() != ""){
+			Cookie cookieToken = shoppingCartUtil.getShoppingCartCookie(request, "userTokenID");
+			
+			User user = userService.findByTokenId(cookieToken.getValue());
+			System.out.println(" User is logged in and ID is "+user.getId());
+			return user.getId().toString();
+		}
+		//guest user
+		else {
+			Cookie cookieToken = shoppingCartUtil.getShoppingCartCookie(request, "guestTokenId");
+			User user = userService.findByTokenId(cookieToken.getValue());
+			System.out.println(" Guest User and ID is "+user.getId());
+			return user.getId().toString();
+		}
+	}
+    
+    
 }
