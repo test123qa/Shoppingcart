@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sahan.zaizi.service;
+package com.virtualagent.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
