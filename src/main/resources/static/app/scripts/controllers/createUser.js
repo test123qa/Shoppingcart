@@ -15,10 +15,26 @@ app.controller("createUserCntrl", function($scope, $http, $window) {
 		DOB : "",
 
 	}
-
+function validate(){
+		if($scope.payload.userName==''){
+			return false;
+		}if($scope.payload.firstName==''){
+			return false;
+		}if($scope.payload.lastName==''){
+			return false;
+		}if($scope.payload.email==''){
+			return false;
+		}if($scope.payload.password==''){
+			return false;
+		}else{
+			return true;
+		}
+	}
 	$scope.onSubmit = function() {
 		var host = $window.location.host;
-		$http({
+		if(validate())
+	{
+	  $http({
 			url : "http://" + host + "/shoppingcart/registerUser",
 			method : "POST",
 			data : $scope.payload
@@ -31,8 +47,10 @@ app.controller("createUserCntrl", function($scope, $http, $window) {
 	        $window.location.href = landingUrl;
 		}, function(response) {
 			console.log(response);
-
+		
 		});
+	}else{
+		return false;
 	}
-
+	}
 })
