@@ -46,16 +46,35 @@ public class ProductService {
 		products.add(new Product(550.0d, 800, "Champion Men's Vapor® Select Training Pants", "Pants", "MEN",
 				"MEN_ACTIVE_WARE","../images/8.jpeg"));
 		products.add(new Product(85000.0d, 800, "Under Armour Men's 10 Tech Graphic Shorts", "Shorts", "MEN", "MEN_ACTIVE_WARE","../images/9.jpeg"));
+		////////////////// New Product/////////////////////
+		
+		products.add(new Product(2500.0d, 800, "Under Armour Men's Tech Quarter-Zip Pullover", "Hoodie", "MEN", "MEN_ACTIVE_WARE","../images/hoodies1.jpeg"));
+		products.add(new Product(2000.0d, 800, "Under Armour Men's Storm Specialist Sweater", "Hoodie", "MEN", "MEN_ACTIVE_WARE","../images/Hoodie2.jpeg"));
+		products.add(new Product(1555.0d, 800, "Under Armour Men's Storm Swacket", "Hoodie", "MEN", "MEN_ACTIVE_WARE","../images/Hoodie3.jpeg"));
+		products.add(new Product(2100.0d, 800, "Under Armour Men's Archive Zip Hoodie", "Puma Hoodie", "MEN", "MEN_ACTIVE_WARE","../images/Hoodie4.jpeg"));
+		
+		products.add(new Product(1600.0d, 800, "Under Armour Men's Tech Textured-Stripe Polo", "Polo T-shirt", "MEN", "MEN_ACTIVE_WARE","../images/T-shirt1.jpeg"));
+		products.add(new Product(1200.0d, 800, "Men's Ferrari Polo", "Polo T-shirt", "MEN", "MEN_ACTIVE_WARE","../images/T-shirt2.jpeg"));
+		products.add(new Product(1500.0d, 800, "Under Armour Men's CoolSwitch Striped Polo", "Polo T-shirt", "MEN", "MEN_ACTIVE_WARE","../images/T-shirt3.jpeg"));
+		
+		products.add(new Product(900.0d, 800, "Under Armour Men's Match Play Golf Shorts", "Shorts", "MEN", "MEN_ACTIVE_WARE","../images/shorts1.jpeg"));
+		products.add(new Product(1000.0d, 800, "Under Armour Men's Phantom Blackball 18 Boardshorts", "shorts", "MEN", "MEN_ACTIVE_WARE","../images/shorts2.jpeg"));
+		
+		products.add(new Product(300.0d, 800, "Gold Toe Cotton Quarter Athletic 6 Pack Socks", "Socks", "MEN", "MEN_ACTIVE_WARE","../images/socks1.jpeg"));
+		products.add(new Product(200.0d, 800, "Gold Toe Socks, Athletic Cushion Liner 4 Pack", "Socks", "MEN", "MEN_ACTIVE_WARE","../images/socks2.jpeg"));
+		
 	}
 
 	public void saveInitialBatch() {
-		List<Product> productList = productRepository.findAll();
+		/*List<Product> productList = productRepository.findAll();
 		if(productList == null || productList.size() == 0){
-			System.out.println("******First time product setup********");
-			productRepository.save(products);
-		}else{
+			System.out.println("******First time product setup********");*/
+			
+		//productRepository.save(products);
+		
+		/*}else{
 			System.out.println("*******Product setup has already done*********");
-		}
+		}*/
 		
 
 	}
