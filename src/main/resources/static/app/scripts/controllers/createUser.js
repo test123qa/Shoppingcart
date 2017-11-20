@@ -53,4 +53,10 @@ function validate(){
 		return false;
 	}
 	}
+	
+	$scope.back = function(){
+		var host = $window.location.host;
+		var landingUrl = "http://" + host + "/shoppingcart";
+		$window.location.href = landingUrl;
+	}
 })
