@@ -4,40 +4,107 @@
 <head>
   <link rel="stylesheet" href="../css/createUser.css">
   <style type="text/css">
-input, select {
-    width: 25%;
-    padding: 8px 10px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+* {
+box-sizing: border-box;
 }
 
-.button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+*:focus {
+	outline: none;
+}
+body {
+font-family: Arial;
+background-color: #3498DB;
+padding: 50px;
+}
+.login {
+margin: 20px auto;
+width: 300px;
+}
+.login-screen {
+background-color: #FFF;
+padding: 20px;
+border-radius: 5px
 }
 
-input[type=submit]:hover {
-    background-color: #45a049;
+.app-title {
+text-align: center;
+color: #777;
 }
 
-#create-profile {
-    border-radius: 50px;
-    background-color: #f2f2f2;
-   
+.login-form {
+text-align: center;
+}
+.control-group {
+margin-bottom: 10px;
+}
+
+input {
+text-align: center;
+background-color: #ECF0F1;
+border: 2px solid transparent;
+border-radius: 3px;
+font-size: 16px;
+font-weight: 200;
+padding: 10px 0;
+width: 250px;
+transition: border .5s;
+}
+
+input:focus {
+border: 2px solid #3498DB;
+box-shadow: none;
+}
+
+.btn {
+  border: 2px solid transparent;
+  background: #3498DB;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.btn1 {
+  border: 2px solid transparent;
+  background: tomoto;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  background-color: #2980B9;
+}
+
+.login-link {
+  font-size: 12px;
+  color: #444;
+ display: block;
+	margin-top: 12px;
 }
   
   </style>
 </head>
 </head>
 <body>
-<div class="col-md-7 col-xs-7 logintxt CENTER">
+<!-- <div class="col-md-7 col-xs-7 logintxt CENTER">
 
 		<div class="container">
 
@@ -45,26 +112,25 @@ input[type=submit]:hover {
 					style="width: 200px; height: 100px;" class="img-rounded" alt="Cinque Terre"></img>
 				</a>
 			</div>
-	</div>
+	</div> -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 	<script src="../scripts/controllers/createUser.js"></script>
-	<div class="row">
-	<div ng-app="createUser" ng-controller="createUserCntrl" class="col-xs-12 col-sm-12 col-md-4 well well-sm">
-		<form id="create-profile" >
-			<h2 style="margin-left: 500px">Create account</h2>
-			<div style="margin-left: 500px" >
-			<div class="row" >
-				<div class="col-xs-6 col-md-6">
+	<div class="login">
+	<div ng-app="createUser" ng-controller="createUserCntrl" class="login-screen">
+		<div class="app-title">
+				<h1>Create account</h1>
+			</div>
+			<div class="login-form">
+				<div class="control-group">
 					<label for="userName">User Name : </label> <input id="userName"
 						name="userName" class="form-control" title="User Name"
 						data-validate="userName" type="text" value="" maxlength="20"
 						ng-model="payload.userName" required />
 				</div>
-			</div><br/>
 
 			<div class="row">
-				<div class="col-xs-6 col-md-6">
+				<div class="control-group">
 					<label for="firstName">First Name : </label> <input id="firstName"
 						name="firstName" class="form-control" title="First Name"
 						data-validate="firstName" type="text" value="" maxlength="20"
@@ -73,7 +139,7 @@ input[type=submit]:hover {
 			</div><br/>
 
 			<div class="row">
-				<div class="col-xs-6 col-md-6">
+				<div class="control-group">
 					<label for="lastName">Last Name : </label> <input id="lastName"
 						name="lastName" class="form-control" title="Last Name"
 						data-validate="lastName" type="text" value="" maxlength="30"
@@ -82,7 +148,7 @@ input[type=submit]:hover {
 			</div><br/>
 
 			<div class="row">
-				<div class="col-xs-6 col-md-6" style="margin-left: -30px">
+				<div class="control-group" >
 					<label for="email">Email Address : </label>&nbsp; <input id="email"
 						name="email" title="Email" type="email" value="" maxlength="75"
 						ng-model="payload.email" required class="form-control">
@@ -90,16 +156,16 @@ input[type=submit]:hover {
 			</div><br/>
 
 			<div class="row">
-				<div class="col-xs-6 col-md-6" >
+				<div class="control-group" >
 					<label for="password">Password : </label>&nbsp; <input id="password"
 						name="password" title="Password" type="password" value=""
 						maxlength="16" autocomplete="off" style="padding-right: 96px;"
-						ng-model="payload.password" required class="form-control">
+						ng-model="payload.password" required class="form-control" >
 				</div>
 			</div><br/>
 
 			<div class="row">
-				<div class="col-xs-6 col-md-6" style="margin-left: -30px">
+				<div class="control-group" >
 					<label for="password">Date of Birth : </label>&nbsp; <input id="dob"
 						name="dob" title="Dob" type="date" value="" maxlength="16"
 						autocomplete="off" style="padding-right: 96px;"
@@ -110,19 +176,13 @@ input[type=submit]:hover {
 			<div class="row">
 				<div class="col-xs-6 col-md-6">
 					<button type="submit" id="createProfileBtn" name="createProfile"
-						class="button" ng-click="onSubmit()">Create Account</button>
+						class="btn btn-primary btn-large btn-block" ng-click="onSubmit()">Create Account</button>
 					<input type="hidden" name="createProfile">
 				</div>
-			</div>
+			</div><br/>
+			<a class="login-link" href="/shoppingcart">Back to Home Page</a>
 </div>
-		</form>
-		<div class="row" style="margin-top: -55px; margin-left: 700px;">
-				<div class="col-xs-6 col-md-6">
-					<button type="submit" id="createProfileBtn" name="createProfile"
-						class="button" ng-click="back()" style="width: 125px">Back</button>
-					<input type="hidden" name="createProfile">
-				</div>
-			</div>
+		
 	</div>
 	</div>
 	
