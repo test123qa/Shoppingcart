@@ -5,57 +5,83 @@
 <script src="app/scripts/controllers/login.js"></script> 
         <title>Spring Security Example </title>
         <style type="text/css">
-.main-border {
-	background-color: #fff;
-	border-color: #ccc;
-	border-style: none solid solid;
-	border-width: 0 1px 1px;
+* {
+box-sizing: border-box;
 }
 
-.signin-container {
-    padding: 10px 0 40px 0;
-    overflow: hidden;
+*:focus {
+	outline: none;
+}
+body {
+font-family: Arial;
+background-color: #3498DB;
+padding: 50px;
+}
+.login {
+margin: 20px auto;
+width: 300px;
+}
+.login-screen {
+background-color: #FFF;
+padding: 20px;
+border-radius: 5px
 }
 
-.small-centered {
-    margin-left: auto;
-    margin-right: auto;
-    float: none!important;
+.app-title {
+text-align: center;
+color: #777;
 }
 
-.small-14 {
-    width: 87.5%;
+.login-form {
+text-align: center;
+}
+.control-group {
+margin-bottom: 10px;
 }
 
-#globalContentContainer {
-    max-width: 500px;
-    margin-top: 100px;
-    margin: 0 auto;
-    width: 100%;
-    border: 1px solid #d5d5d5;
-    background-color: #FFF;
+input {
+text-align: center;
+background-color: #ECF0F1;
+border: 2px solid transparent;
+border-radius: 3px;
+font-size: 16px;
+font-weight: 200;
+padding: 10px 0;
+width: 250px;
+transition: border .5s;
 }
 
-.row {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
-    margin-bottom: 0;
-    max-width: 100%;
-    width: 100%;
+input:focus {
+border: 2px solid #3498DB;
+box-shadow: none;
 }
 
-#globalContentContainer .signin-container .account-signin {
-    padding: 10px 50px 0 0;
+.btn {
+  border: 2px solid transparent;
+  background: #3498DB;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
 }
 
-form.standard-form .row .row .columns {
-    padding: 0 0.5em;
+.btn:hover {
+  background-color: #2980B9;
 }
 
-.standard-form label.inline {
-    padding: 1.25em 0;
-    margin: 0;
+.login-link {
+  font-size: 12px;
+  color: #444;
+  display: block;
+	margin-top: 12px;
 }
 </style>
     </head>
@@ -65,11 +91,10 @@ form.standard-form .row .row .columns {
     
    <div id="globalContentContainer" ng-controller="loginMainCtrl" style="margin-top: 100px;">
         <div class="row">
-	<form id="signInForm" class="accSigninForm standard-form" action="/shoppingcart/login" method="post">
+	<form id="signInForm" class="accSigninForm standard-form" action="/shoppingcart/login" method="post" >
 		<div class="row main-border">
 			
-			<div class="small-14 columns small-centered signin-container">
-                	<h3>Sign in</h3>
+			<div class="login">
 				<div class="row error-class-row formMsgs">
                 	<div class="small-16 small-centered columns error-container">
 
@@ -77,24 +102,17 @@ form.standard-form .row .row .columns {
 
                 	</div>
 		        </div> 
-				<div class="small-8 columns account-signin">
+				<div class="login-screen">
+				<div class="app-title">
+				<h1>Login</h1>
+			</div>
 					<div class="row">
-						<div class="columns small-6">
-							<label for="email" class="inline right">
-								User ID
-							</label>
-						</div>
 						<div class="columns small-9">
 							<input id="username" name="username" type="text" maxlength="75" placeholder="Username" autofocus="true" required="required">
 						</div>
 						<div class="small-1 columns errorIcon ">&nbsp;</div>
 					</div>
 					<div class="row">
-						<div class="columns small-6">
-							<label for="password" class="accFormlabel inline right">
-								Password
-							</label>
-						</div>
 						<div class="columns small-9">
 							<input id="password" name="password" class="signinLabels" type="password" maxlength="16" placeholder="Password" required="required">
 						</div>
@@ -106,8 +124,8 @@ form.standard-form .row .row .columns {
 						<div class="columns small-10">
 							<div class="row">
 							    <div class="small-16 columns">
-									<button type="submit" id="signInBtn" class="button small radius" name="accountSignIn"><span>Sign in</span></button>
-									<a href="/shoppingcart/index.html" style="margin-left: 10px;">Continue with Guest User</a>
+									<button type="submit" id="signInBtn" class="btn btn-primary btn-large btn-block" name="accountSignIn"><span>Sign in</span></button>
+									<a href="/shoppingcart/index.html" style="margin-left: 10px;" class="login-link">Continue with Guest User</a>
                                 </div>
 							</div>
 						</div>
