@@ -15,6 +15,7 @@ $(document).ready(function() {
 	$("#btnChatWindow").on("click", function() {
 		$("#chat-modal").load("chatWindow.html");
 		setTimeout(function(){
+			$('#chat-window').append('Hello');
 			$(".ui-dialog").css("position","fixed");
 		})
 		

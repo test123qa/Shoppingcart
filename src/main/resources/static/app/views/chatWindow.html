@@ -2,7 +2,7 @@
 <body>
 <div id="dialog-form" title="Chat With Us" style="background: white;">
 	<form id="myForm" autocomplete="off">
-		
+		<div id="links">
 				<a href="../views/men-activeWare.html" style="margin-left: 15px"> <img src="../images/1.jpeg"
 					style="width: 200px; height: 100px;" class="img-rounded"
 					alt="Cinque Terre"></img>
@@ -15,6 +15,7 @@
 				</a><a href = "../views/men-activeWare.html" style="margin-left: 15px; white-space: nowrap;"><span style="color: #337ab7">adidas Men's Essential Tricot Track Jacket</span></a><br/>
 				<span style="color: red; margin-left: 15px">Sale INR 450</span>
 				<br/>
+				</div>
 				<ul id="chatConversation"></ul>
 			<input type="text" name="chat" id="chat"  class="text ui-widget-content ui-corner-all" style="bottom:0;right:0;margin-top: 30px; width: 280px" />
 		
@@ -70,7 +71,11 @@
 		chatDialog.on("dialogclose", function() {
 			$("#btnChatWindow").show();
 		});
+		$("#links").append("<a href='../views/men-activeWare.html' style='margin-left: 15px'><img src='../images/2.jpeg' style='width: 200px; height: 100px;' class='img-rounded' alt='Cinque Terre'></img><br/></a><a href = '../views/men-activeWare.html' style='margin-left: 15px; white-space: nowrap;'><span style='color: #337ab7'>adidas Essential Men's Tricot Track Jacket</span></a><br/>"+
+		"<span style='color: red; margin-left: 15px'>Sale INR 450</span>");
 	});
+	
+	
 	 
 </script>
 </body>
